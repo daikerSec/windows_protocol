@@ -1,0 +1,859 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>NTLM 基础 介绍 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="5.html" />
+    
+    
+    <link rel="prev" href="../NTLM/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../kerberos/">
+            
+                <a href="../kerberos/">
+            
+                    
+                    Kerberos 篇
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../kerberos/1.html">
+            
+                <a href="../kerberos/1.html">
+            
+                    
+                    AS_REQ & AS_REP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../kerberos/2.html">
+            
+                <a href="../kerberos/2.html">
+            
+                    
+                    TGS_REQ& TGS_REP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../kerberos/3.html">
+            
+                <a href="../kerberos/3.html">
+            
+                    
+                    PAC
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../NTLM/">
+            
+                <a href="../NTLM/">
+            
+                    
+                    NTLM 篇
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="4.html">
+            
+                <a href="4.html">
+            
+                    
+                    NTLM 基础 介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="5.html">
+            
+                <a href="5.html">
+            
+                    
+                    发起NTLM  请求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="6.html">
+            
+                <a href="6.html">
+            
+                    
+                    Net- NTLM 利用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="7.html">
+            
+                <a href="7.html">
+            
+                    
+                    漏洞概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >NTLM 基础 介绍</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="ntlm&#x7BC7;&#x4E4B;ntlm&#x57FA;&#x7840;&#x4ECB;&#x7ECD;">ntlm&#x7BC7;&#x4E4B;ntlm&#x57FA;&#x7840;&#x4ECB;&#x7ECD;</h1>
+<h2 id="0x00-&#x524D;&#x8A00;">0x00 &#x524D;&#x8A00;</h2>
+<p>&#x8FD9;&#x4E2A;&#x7CFB;&#x5217;&#x6587;&#x7AE0;&#x4E3B;&#x8981;&#x8BB2;ntlm&#x8BA4;&#x8BC1;&#x76F8;&#x5173;&#x7684;&#x5185;&#x5BB9;&#x3002;&#x4EE5;&#x53CA;&#x7740;&#x91CD;&#x4ECB;&#x7ECD;ntlm&#x4E24;&#x5927;&#x5B89;&#x5168;&#x95EE;&#x9898;--PTH&#x548C;ntlm_relay&#x3002;</p>
+<p>ntlm&#x7BC7;&#x5206;&#x4E3A;&#x56DB;&#x7BC7;&#x6587;&#x7AE0;</p>
+<p>&#x7B2C;1&#x7BC7;&#x6587;&#x7AE0;&#x4E5F;&#x662F;&#x672C;&#x6587;&#xFF0C;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E3B;&#x8981;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E00;&#x4E9B;&#x57FA;&#x7840;&#x6982;&#x5FF5;&#x4EE5;&#x53CA;&#x5F15;&#x8FDB;&#x4E00;&#x4E9B;&#x76F8;&#x5173;&#x7684;&#x6F0F;&#x6D1E;&#xFF0C;&#x6BD4;&#x5982;Pass The Hash&#x4EE5;&#x53CA;ntlm_relay&#x3002;</p>
+<p>&#x5176;&#x4F59;&#x4E09;&#x7BC7;&#x6587;&#x7AE0;&#x7684;&#x5185;&#x5BB9;&#x5168;&#x90E8;&#x90FD;&#x662F;&#x8BB2;ntlm_relay,&#x8FD9;&#x4E2A;&#x5B89;&#x5168;&#x95EE;&#x9898;&#x662F;ntlm&#x7BC7;&#x7684;&#x91CD;&#x70B9;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x7B2C;2&#x7BC7;&#x6587;&#x7AE0;&#x4E3B;&#x8981;&#x8BB2;&#x89E6;&#x53D1;windows&#x5411;&#x653B;&#x51FB;&#x8005;&#x53D1;&#x8D77;ntlm&#x8BF7;&#x6C42;&#x7684;&#x4E00;&#x4E9B;&#x65B9;&#x5F0F;,&#x6BD4;&#x5982;&#x5927;&#x5BB6;&#x8033;&#x719F;&#x80FD;&#x8BE6;&#x7684;&#x6253;&#x5370;&#x673A;&#x6F0F;&#x6D1E;&#x3002;</p>
+<p>&#x7B2C;3&#x7BC7;&#x6587;&#x7AE0;&#x4E3B;&#x8981;&#x8BB2;&#x7684;&#x662F;&#x653B;&#x51FB;&#x8005;&#x63A5;&#x6536;&#x5230;ntlm&#x8BF7;&#x6C42;&#x4E4B;&#x540E;&#x505A;&#x7684;&#x4E8B;&#xFF0C;&#x5982;&#x7206;&#x7834;Net-ntlm&#xFF0C;&#x53C8;&#x6216;&#x8005;relay&#x5230;SMB,HTTP,Exchange,LDAP&#x7B49;&#x3002;</p>
+<p>&#x7B2C;4&#x7BC7;&#x6587;&#x7AE0;&#x4E3B;&#x8981;&#x56DE;&#x987E;&#x4E00;&#x4E0B;&#x4ECE;&#x4E0A;&#x4E16;&#x7EAA;ntlm_relay&#x88AB;&#x63D0;&#x51FA;&#x6765;&#xFF0C;&#x5FAE;&#x8F6F;&#x4ECE;08&#x5E74;&#x5F00;&#x59CB;&#x4E3A;ntlm_relay&#x9646;&#x9646;&#x7EED;&#x7EED;&#x63A8;&#x51FA;&#x7684;&#x4E00;&#x4E9B;&#x8865;&#x4E01;&#x4EE5;&#x53CA;&#x7ED5;&#x8FC7;,&#x5982;ms08068&#xFF0C;MS16-075&#xFF0C;CVE-2015-0005&#xFF0C;CVE-2018-8581&#xFF0C;CVE-2019-1040,CVE2019-1384&#x3002;&#x4EE5;&#x53CA;ntlm relay&#x7684;&#x4E00;&#x4E9B;&#x7F13;&#x89E3;&#x63AA;&#x65BD;&#x3002;</p>
+<h2 id="0x01-lm-hash--ntlm-hash">0x01 LM Hash &amp; NTLM Hash</h2>
+<p>windows&#x5185;&#x90E8;&#x662F;&#x4E0D;&#x4FDD;&#x5B58;&#x660E;&#x6587;&#x5BC6;&#x7801;&#x7684;&#xFF0C;&#x53EA;&#x4FDD;&#x5B58;&#x5BC6;&#x7801;&#x7684;hash&#x3002;</p>
+<p>&#x5176;&#x4E2D;&#x672C;&#x673A;&#x7528;&#x6237;&#x7684;&#x5BC6;&#x7801;hash&#x662F;&#x653E;&#x5728; &#x672C;&#x5730;&#x7684;SAM&#x6587;&#x4EF6; &#x91CC;&#x9762;&#xFF0C;&#x57DF;&#x5185;&#x7528;&#x6237;&#x7684;&#x5BC6;&#x7801;hash&#x662F;&#x5B58;&#x5728;&#x57DF;&#x63A7;&#x7684;NTDS.DIT&#x6587;&#x4EF6; &#x91CC;&#x9762;&#x3002;&#x90A3;hash&#x7684;&#x683C;&#x5F0F;&#x662F;&#x600E;&#x4E48;&#x6837;&#x7684;&#x5462;?</p>
+<p>&#x5728;Windows&#x7CFB;&#x7EDF;&#x5BFC;&#x51FA;&#x5BC6;&#x7801;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7ECF;&#x5E38;&#x770B;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x5BC6;&#x7801;&#x683C;&#x5F0F;</p>
+<pre><code>Administrator:500:AAD3B435B51404EEAAD3B435B51404EE:31D6CFE0D16AE931B73C59D7E0C089C0:::
+</code></pre><p>&#x5176;&#x4E2D;&#x7684;<code>AAD3B435B51404EEAAD3B435B51404EE</code>&#x662F;LM Hash</p>
+<p>&#x200B;           <code>31D6CFE0D16AE931B73C59D7E0C089C0</code>&#x662F;NTLM Hash</p>
+<p>&#x4E0B;&#x9762;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x4E0B;&#x8FD9;&#x4E24;&#x79CD;hash&#x683C;&#x5F0F;&#x3002;</p>
+<h3 id="1-lm-hash">1. LM Hash</h3>
+<p>&#x5168;&#x79F0;&#x662F;LAN Manager Hash, windows&#x6700;&#x65E9;&#x7528;&#x7684;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#xFF0C;&#x7531;IBM&#x8BBE;&#x8BA1;&#x3002; </p>
+<p>LM Hash&#x7684;&#x8BA1;&#x7B97;:</p>
+<ol>
+<li><p>&#x7528;&#x6237;&#x7684;&#x5BC6;&#x7801;&#x8F6C;&#x6362;&#x4E3A;&#x5927;&#x5199;&#xFF0C;&#x5BC6;&#x7801;&#x8F6C;&#x6362;&#x4E3A;16&#x8FDB;&#x5236;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4E0D;&#x8DB3;14&#x5B57;&#x8282;&#x5C06;&#x4F1A;&#x7528;0&#x6765;&#x518D;&#x540E;&#x9762;&#x8865;&#x5168;&#x3002;</p>
+</li>
+<li><p>&#x5BC6;&#x7801;&#x7684;16&#x8FDB;&#x5236;&#x5B57;&#x7B26;&#x4E32;&#x88AB;&#x5206;&#x6210;&#x4E24;&#x4E2A;7byte&#x90E8;&#x5206;&#x3002;&#x6BCF;&#x90E8;&#x5206;&#x8F6C;&#x6362;&#x6210;&#x6BD4;&#x7279;&#x6D41;&#xFF0C;&#x5E76;&#x4E14;&#x957F;&#x5EA6;&#x4F4D;56bit&#xFF0C;&#x957F;&#x5EA6;&#x4E0D;&#x8DB3;&#x4F7F;&#x7528;0&#x5728;&#x5DE6;&#x8FB9;&#x8865;&#x9F50;&#x957F;&#x5EA6;</p>
+</li>
+<li><p>&#x518D;&#x5206;7bit&#x4E3A;&#x4E00;&#x7EC4;,&#x6BCF;&#x7EC4;&#x672B;&#x5C3E;&#x52A0;0&#xFF0C;&#x518D;&#x7EC4;&#x6210;&#x4E00;&#x7EC4;</p>
+</li>
+<li><p>&#x4E0A;&#x6B65;&#x9AA4;&#x5F97;&#x5230;&#x7684;&#x4E8C;&#x7EC4;&#xFF0C;&#x5206;&#x522B;&#x4F5C;&#x4E3A;key &#x4E3A; &quot;<code>KGS!@#$%</code>&quot;&#x8FDB;&#x884C;DES&#x52A0;&#x5BC6;&#x3002;</p>
+</li>
+<li>&#x5C06;&#x52A0;&#x5BC6;&#x540E;&#x7684;&#x4E24;&#x7EC4;&#x62FC;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x5F97;&#x5230;&#x6700;&#x7EC8;LM HASH&#x503C;&#x3002;</li>
+</ol>
+<pre><code class="lang-python"><span class="hljs-comment">#coding=utf-8</span>
+<span class="hljs-keyword">import</span> re
+<span class="hljs-keyword">import</span> binascii
+<span class="hljs-keyword">from</span> pyDes <span class="hljs-keyword">import</span> *
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">DesEncrypt</span><span class="hljs-params">(str, Des_Key)</span>:</span>
+    k = des(binascii.a2b_hex(Des_Key), ECB, pad=<span class="hljs-keyword">None</span>)
+    EncryptStr = k.encrypt(str)
+    <span class="hljs-keyword">return</span> binascii.b2a_hex(EncryptStr)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">group_just</span><span class="hljs-params">(length,text)</span>:</span>
+    <span class="hljs-comment"># text 00110001001100100011001100110100001101010011011000000000</span>
+    text_area = re.findall(<span class="hljs-string">r&apos;.{%d}&apos;</span> % int(length), text) <span class="hljs-comment"># [&apos;0011000&apos;, &apos;1001100&apos;, &apos;1000110&apos;, &apos;0110011&apos;, &apos;0100001&apos;, &apos;1010100&apos;, &apos;1101100&apos;, &apos;0000000&apos;]</span>
+    text_area_padding = [i + <span class="hljs-string">&apos;0&apos;</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> text_area] <span class="hljs-comment">#[&apos;00110000&apos;, &apos;10011000&apos;, &apos;10001100&apos;, &apos;01100110&apos;, &apos;01000010&apos;, &apos;10101000&apos;, &apos;11011000&apos;, &apos;00000000&apos;]</span>
+    hex_str = <span class="hljs-string">&apos;&apos;</span>.join(text_area_padding) <span class="hljs-comment"># 0011000010011000100011000110011001000010101010001101100000000000</span>
+    hex_int = hex(int(hex_str, <span class="hljs-number">2</span>))[<span class="hljs-number">2</span>:].rstrip(<span class="hljs-string">&quot;L&quot;</span>) <span class="hljs-comment">#30988c6642a8d800</span>
+    <span class="hljs-keyword">if</span> hex_int == <span class="hljs-string">&apos;0&apos;</span>:
+        hex_int = <span class="hljs-string">&apos;0000000000000000&apos;</span>
+    <span class="hljs-keyword">return</span> hex_int
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">lm_hash</span><span class="hljs-params">(password)</span>:</span>
+    <span class="hljs-comment"># 1. &#x7528;&#x6237;&#x7684;&#x5BC6;&#x7801;&#x8F6C;&#x6362;&#x4E3A;&#x5927;&#x5199;&#xFF0C;&#x5BC6;&#x7801;&#x8F6C;&#x6362;&#x4E3A;16&#x8FDB;&#x5236;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4E0D;&#x8DB3;14&#x5B57;&#x8282;&#x5C06;&#x4F1A;&#x7528;0&#x6765;&#x518D;&#x540E;&#x9762;&#x8865;&#x5168;&#x3002;</span>
+    pass_hex = password.upper().encode(<span class="hljs-string">&quot;hex&quot;</span>).ljust(<span class="hljs-number">28</span>,<span class="hljs-string">&apos;0&apos;</span>) <span class="hljs-comment">#3132333435360000000000000000</span>
+    print(pass_hex) 
+    <span class="hljs-comment"># 2. &#x5BC6;&#x7801;&#x7684;16&#x8FDB;&#x5236;&#x5B57;&#x7B26;&#x4E32;&#x88AB;&#x5206;&#x6210;&#x4E24;&#x4E2A;7byte&#x90E8;&#x5206;&#x3002;&#x6BCF;&#x90E8;&#x5206;&#x8F6C;&#x6362;&#x6210;&#x6BD4;&#x7279;&#x6D41;&#xFF0C;&#x5E76;&#x4E14;&#x957F;&#x5EA6;&#x4F4D;56bit&#xFF0C;&#x957F;&#x5EA6;&#x4E0D;&#x8DB3;&#x4F7F;&#x7528;0&#x5728;&#x5DE6;&#x8FB9;&#x8865;&#x9F50;&#x957F;&#x5EA6;</span>
+    left_str = pass_hex[:<span class="hljs-number">14</span>] <span class="hljs-comment">#31323334353600</span>
+    right_str = pass_hex[<span class="hljs-number">14</span>:] <span class="hljs-comment">#00000000000000</span>
+    left_stream = bin(int(left_str, <span class="hljs-number">16</span>)).lstrip(<span class="hljs-string">&apos;0b&apos;</span>).rjust(<span class="hljs-number">56</span>, <span class="hljs-string">&apos;0&apos;</span>) <span class="hljs-comment"># 00110001001100100011001100110100001101010011011000000000</span>
+    right_stream = bin(int(right_str, <span class="hljs-number">16</span>)).lstrip(<span class="hljs-string">&apos;0b&apos;</span>).rjust(<span class="hljs-number">56</span>, <span class="hljs-string">&apos;0&apos;</span>) <span class="hljs-comment"># 00000000000000000000000000000000000000000000000000000000</span>
+    <span class="hljs-comment"># 3. &#x518D;&#x5206;7bit&#x4E3A;&#x4E00;&#x7EC4;,&#x6BCF;&#x7EC4;&#x672B;&#x5C3E;&#x52A0;0&#xFF0C;&#x518D;&#x7EC4;&#x6210;&#x4E00;&#x7EC4;</span>
+    left_stream = group_just(<span class="hljs-number">7</span>,left_stream) <span class="hljs-comment"># 30988c6642a8d800</span>
+    right_stream = group_just(<span class="hljs-number">7</span>,right_stream) <span class="hljs-comment"># 0000000000000000</span>
+    <span class="hljs-comment"># 4. &#x4E0A;&#x6B65;&#x9AA4;&#x5F97;&#x5230;&#x7684;&#x4E8C;&#x7EC4;&#xFF0C;&#x5206;&#x522B;&#x4F5C;&#x4E3A;key &#x4E3A; &quot;KGS!@#$%&quot;&#x8FDB;&#x884C;DES&#x52A0;&#x5BC6;&#x3002;</span>
+    left_lm = DesEncrypt(<span class="hljs-string">&apos;KGS!@#$%&apos;</span>,left_stream) <span class="hljs-comment">#44efce164ab921ca</span>
+    right_lm = DesEncrypt(<span class="hljs-string">&apos;KGS!@#$%&apos;</span>,right_stream) <span class="hljs-comment"># aad3b435b51404ee</span>
+    <span class="hljs-comment"># 5. &#x5C06;&#x52A0;&#x5BC6;&#x540E;&#x7684;&#x4E24;&#x7EC4;&#x62FC;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x5F97;&#x5230;&#x6700;&#x7EC8;LM HASH&#x503C;&#x3002;</span>
+    <span class="hljs-keyword">return</span> left_lm + right_lm
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    hash = lm_hash(<span class="hljs-string">&quot;123456&quot;</span>)
+</code></pre>
+<p><img src="img/ntlm_basic/image-20191115121137786.png" alt="image-20191115121137786"></p>
+<p> LM&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x56FA;&#x6709;&#x7684;&#x6F0F;&#x6D1E;</p>
+<ol>
+<li>&#x9996;&#x5148;&#xFF0C;&#x5BC6;&#x7801;&#x957F;&#x5EA6;&#x6700;&#x5927;&#x53EA;&#x80FD;&#x4E3A;14&#x4E2A;&#x5B57;&#x7B26;</li>
+<li>&#x5BC6;&#x7801;&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x3002;&#x5728;&#x751F;&#x6210;&#x54C8;&#x5E0C;&#x503C;&#x4E4B;&#x524D;&#xFF0C;&#x6240;&#x6709;&#x5BC6;&#x7801;&#x90FD;&#x5C06;&#x8F6C;&#x6362;&#x4E3A;&#x5927;&#x5199;</li>
+<li>&#x67E5;&#x770B;&#x6211;&#x4EEC;&#x7684;&#x52A0;&#x5BC6;&#x8FC7;&#x7A0B;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x5206;&#x7EC4;&#x7684;DES&#xFF0C;&#x5982;&#x679C;&#x5BC6;&#x7801;&#x5F3A;&#x5EA6;&#x662F;&#x5C0F;&#x4E8E;7&#x4F4D;&#xFF0C;&#x90A3;&#x4E48;&#x7B2C;&#x4E8C;&#x4E2A;&#x5206;&#x7EC4;&#x52A0;&#x5BC6;&#x540E;&#x7684;&#x7ED3;&#x679C;&#x80AF;&#x5B9A;&#x662F;<code>aad3b435b51404ee</code>&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x770B;&#x5230;lm hash&#x7684;&#x7ED3;&#x5C3E;&#x662F;<code>aad3b435b51404ee</code>&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F88;&#x8F7B;&#x6613;&#x7684;&#x53D1;&#x73B0;&#x5BC6;&#x7801;&#x5F3A;&#x5EA6;&#x5C11;&#x4E8E;7&#x4F4D;</li>
+<li>&#x4E00;&#x4E2A;14&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x5BC6;&#x7801;&#x5206;&#x6210;7 + 7&#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x5E76;&#x4E14;&#x5206;&#x522B;&#x4E3A;&#x8FD9;&#x4E24;&#x4E2A;&#x534A;&#x90E8;&#x5206;&#x8BA1;&#x7B97;&#x54C8;&#x5E0C;&#x503C;&#x3002;&#x8FD9;&#x79CD;&#x8BA1;&#x7B97;&#x54C8;&#x5E0C;&#x503C;&#x7684;&#x65B9;&#x5F0F;&#x4F7F;&#x7834;&#x89E3;&#x96BE;&#x5EA6;&#x6210;&#x500D;&#x589E;&#x52A0;&#xFF0C;&#x56E0;&#x4E3A;&#x653B;&#x51FB;&#x8005;&#x9700;&#x8981;&#x5C06;7&#x4E2A;&#x5B57;&#x7B26;&#xFF08;&#x800C;&#x4E0D;&#x662F;14&#x4E2A;&#x5B57;&#x7B26;&#xFF09;&#x5F3A;&#x5236;&#x66B4;&#x529B;&#x7834;&#x89E3;&#x3002;&#x8FD9;&#x4F7F;&#x5F97;14&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x5BC6;&#x7801;&#x7684;&#x6709;&#x6548;&#x5F3A;&#x5EA6;&#x7B49;&#x4E8E;&#xFF0C;&#x6216;&#x8005;&#x662F;7&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x5BC6;&#x7801;&#x7684;&#x4E24;&#x500D;&#xFF0C;&#x8BE5;&#x5BC6;&#x7801;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x660E;&#x663E;&#x4F4E;&#x4E8E; <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f7216e205a9fb4054eff04aeff89470eebda6eb3" alt="{\ displaystyle 95 ^ {14}}"> 14&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x5BC6;&#x7801;&#x7684;&#x7406;&#x8BBA;&#x5F3A;&#x5EA6;&#x3002;</li>
+<li>Des&#x5BC6;&#x7801;&#x5F3A;&#x5EA6;&#x4E0D;&#x9AD8;</li>
+</ol>
+<h3 id="2-ntlm-hash">2. NTLM Hash</h3>
+<p>&#x4E3A;&#x4E86;&#x89E3;&#x51B3;LM&#x52A0;&#x5BC6;&#x548C;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x65B9;&#x6848;&#x4E2D;&#x56FA;&#x6709;&#x7684;&#x5B89;&#x5168;&#x5F31;&#x70B9;&#xFF0C;Microsoft &#x4E8E;1993&#x5E74;&#x5728;Windows NT 3.1&#x4E2D;&#x5F15;&#x5165;&#x4E86;NTLM&#x534F;&#x8BAE;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x5404;&#x4E2A;&#x7248;&#x672C;&#x5BF9;LM&#x548C;NTLM&#x7684;&#x652F;&#x6301;&#x3002;</p>
+<p><img src="img/ntlm_basic/image-20191115140404117.png" alt="image-20191115140404117"></p>
+<p>&#x5176;&#x4E2D;</p>
+<p><img src="img/ntlm_basic/image-20191115140419378.png" alt="image-20191115140419378"></p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4ECE;Windows Vista &#x548C; Windows Server 2008&#x5F00;&#x59CB;&#xFF0C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x53EA;&#x5B58;&#x50A8;NTLM Hash&#xFF0C;LM Hash&#x5C06;&#x4E0D;&#x518D;&#x5B58;&#x5728;&#x3002;(&#x56E0;&#x6B64;&#x540E;&#x9762;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x8EAB;&#x4EFD;&#x8BA4;&#x8BC1;&#x7684;&#x65F6;&#x5019;&#x53EA;&#x4ECB;&#x7ECD;Net-ntlm&#xFF0C;&#x4E0D;&#x518D;&#x4ECB;&#x7ECD;net-lm)&#x5982;&#x679C;&#x7A7A;&#x5BC6;&#x7801;&#x6216;&#x8005;&#x4E0D;&#x50A8;&#x84C4;LM Hash&#x7684;&#x8BDD;&#xFF0C;&#x6211;&#x4EEC;&#x6293;&#x5230;&#x7684;LM Hash&#x662F;<code>AAD3B435B51404EEAAD3B435B51404EE</code>&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x5728;win7 &#x4E2D;&#x6211;&#x4EEC;&#x770B;&#x5230;&#x6293;&#x5230;LM Hash&#x90FD;&#x662F;<code>AAD3B435B51404EEAAD3B435B51404EE</code>&#xFF0C;&#x8FD9;&#x91CC;&#x7684;LM Hash&#x5E76;&#x6CA1;&#x6709;&#x4EF7;&#x503C;&#x3002;</p>
+<p><img src="img/ntlm_basic/image-20191115173913172.png" alt="image-20191115173913172"></p>
+<p>&#x4F46;&#x67D0;&#x4E9B;&#x5DE5;&#x5177;&#x7684;&#x53C2;&#x6570;&#x9700;&#x8981;&#x586B;&#x5199;&#x56FA;&#x5B9A;&#x683C;&#x5F0F;<code>LM hash:NT hash</code>&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;LM hash&#x586B;0(LM hash&#x53EF;&#x4EE5;&#x4E3A;&#x4EFB;&#x610F;&#x503C;)&#xFF0C;&#x5373;<code>00000000000000000000000000000000:NT hash</code>&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x8BB2;&#x4E0B;NTLM Hash&#x7684;&#x8BA1;&#x7B97;</p>
+<p>1.&#x5148;&#x5C06;&#x7528;&#x6237;&#x5BC6;&#x7801;&#x8F6C;&#x6362;&#x4E3A;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x683C;&#x5F0F;&#x3002;</p>
+<p>2.&#x5C06;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x683C;&#x5F0F;&#x7684;&#x5BC6;&#x7801;&#x8FDB;&#x884C;Unicode&#x7F16;&#x7801;&#x3002;</p>
+<p>3.&#x4F7F;&#x7528;MD4&#x6458;&#x8981;&#x7B97;&#x6CD5;&#x5BF9;Unicode&#x7F16;&#x7801;&#x6570;&#x636E;&#x8FDB;&#x884C;Hash&#x8BA1;&#x7B97;</p>
+<pre><code class="lang-bash">python2 -c <span class="hljs-string">&apos;import hashlib,binascii; print binascii.hexlify(hashlib.new(&quot;md4&quot;, &quot;p@Assword!123&quot;.encode(&quot;utf-16le&quot;)).digest())&apos;</span>
+</code></pre>
+<p><img src="img/ntlm_basic/image-20191115121200362.png" alt="image-20191115121200362"></p>
+<h2 id="0x02-ntlm&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;">0x02 NTLM&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;</h2>
+<p>NTLM&#x9A8C;&#x8BC1;&#x662F;&#x4E00;&#x79CD;Challenge/Response &#x9A8C;&#x8BC1;&#x673A;&#x5236;&#xFF0C;&#x7531;&#x4E09;&#x79CD;&#x6D88;&#x606F;&#x7EC4;&#x6210;:&#x901A;&#x5E38;&#x79F0;&#x4E3A;type 1(&#x534F;&#x5546;)&#xFF0C;&#x7C7B;&#x578B;type 2(&#x8D28;&#x8BE2;)&#x548C;type 3(&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;)&#x3002;</p>
+<p>&#x5B83;&#x57FA;&#x672C;&#x4E0A;&#x662F;&#x8FD9;&#x6837;&#x5DE5;&#x4F5C;&#x7684;:</p>
+<p><img src="img/ntlm_basic/image-20191114185958711.png" alt="image-20191114185958711"></p>
+<ol>
+<li>&#x7528;&#x6237;&#x767B;&#x5F55;&#x5BA2;&#x6237;&#x7AEF;&#x7535;&#x8111;</li>
+<li>(type 1)&#x5BA2;&#x6237;&#x7AEF;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;type 1(&#x534F;&#x5546;)&#x6D88;&#x606F;,&#x5B83;&#x4E3B;&#x8981;&#x5305;&#x542B;&#x5BA2;&#x6237;&#x7AEF;&#x652F;&#x6301;&#x548C;&#x670D;&#x52A1;&#x5668;&#x8BF7;&#x6C42;&#x7684;&#x529F;&#x80FD;&#x5217;&#x8868;&#x3002;</li>
+<li>(type 2)&#x670D;&#x52A1;&#x5668;&#x7528;type 2&#x6D88;&#x606F;(&#x8D28;&#x8BE2;)&#x8FDB;&#x884C;&#x54CD;&#x5E94;&#xFF0C;&#x8FD9;&#x5305;&#x542B;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#x548C;&#x540C;&#x610F;&#x7684;&#x529F;&#x80FD;&#x5217;&#x8868;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x6700;&#x91CD;&#x8981;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x5305;&#x542B;&#x670D;&#x52A1;&#x5668;&#x4EA7;&#x751F;&#x7684;Challenge&#x3002;</li>
+<li>(type 3)&#x5BA2;&#x6237;&#x7AEF;&#x7528;type 3&#x6D88;&#x606F;(&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;)&#x56DE;&#x590D;&#x8D28;&#x8BE2;&#x3002;&#x7528;&#x6237;&#x63A5;&#x6536;&#x5230;&#x6B65;&#x9AA4;3&#x4E2D;&#x7684;challenge&#x4E4B;&#x540E;&#xFF0C;&#x4F7F;&#x7528;&#x7528;&#x6237;hash&#x4E0E;challenge&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#x8FD0;&#x7B97;&#x5F97;&#x5230;response&#xFF0C;&#x5C06;response,username,challeng&#x53D1;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#x3002;&#x6D88;&#x606F;&#x4E2D;&#x7684;response&#x662F;&#x6700;&#x5173;&#x952E;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x5411;&#x670D;&#x52A1;&#x5668;&#x8BC1;&#x660E;&#x5BA2;&#x6237;&#x7AEF;&#x7528;&#x6237;&#x5DF2;&#x7ECF;&#x77E5;&#x9053;&#x5E10;&#x6237;&#x5BC6;&#x7801;&#x3002;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x62FF;&#x5230;type 3&#x4E4B;&#x540E;&#xFF0C;&#x4F7F;&#x7528;challenge&#x548C;&#x7528;&#x6237;hash&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#x5F97;&#x5230;response2&#x4E0E;type 3&#x53D1;&#x6765;&#x7684;response&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x3002;&#x5982;&#x679C;&#x7528;&#x6237;hash&#x662F;&#x5B58;&#x50A8;&#x5728;&#x57DF;&#x63A7;&#x91CC;&#x9762;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x6CA1;&#x6709;&#x7528;&#x6237;hash&#xFF0C;&#x4E5F;&#x5C31;&#x6CA1;&#x529E;&#x6CD5;&#x8BA1;&#x7B97;response2&#x3002;&#x4E5F;&#x5C31;&#x6CA1;&#x6CD5;&#x9A8C;&#x8BC1;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x7528;&#x6237;&#x670D;&#x52A1;&#x5668;&#x5C31;&#x4F1A;&#x901A;&#x8FC7;netlogon&#x534F;&#x8BAE;&#x8054;&#x7CFB;&#x57DF;&#x63A7;&#xFF0C;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x5B89;&#x5168;&#x901A;&#x9053;,&#x7136;&#x540E;&#x5C06;type 1,type 2&#xFF0C;type3 &#x5168;&#x90E8;&#x53D1;&#x7ED9;&#x57DF;&#x63A7;(&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x4E5F;&#x53EB;&#x4F5C;Pass Through Authentication&#x8BA4;&#x8BC1;&#x6D41;&#x7A0B;)</li>
+<li>&#x57DF;&#x63A7;&#x4F7F;&#x7528;challenge&#x548C;&#x7528;&#x6237;hash&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#x5F97;&#x5230;response2&#xFF0C;&#x4E0E;type 3&#x7684;response&#x8FDB;&#x884C;&#x6BD4;&#x8F83;</li>
+</ol>
+<p>&#x4E0B;&#x9762;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E0B;&#x4E09;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;&#x5982;&#x679C;&#x5BF9;&#x4E8E;&#x7EC6;&#x8282;&#x4E0D;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x8BDD;&#x5C31;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x3002;</p>
+<h3 id="1-type-1-&#x534F;&#x5546;">1. type 1 &#x534F;&#x5546;</h3>
+<p>&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;type 1(&#x534F;&#x5546;)&#x6D88;&#x606F;,&#x5B83;&#x4E3B;&#x8981;&#x5305;&#x542B;&#x5BA2;&#x6237;&#x7AEF;&#x652F;&#x6301;&#x548C;&#x670D;&#x52A1;&#x5668;&#x8BF7;&#x6C42;&#x7684;&#x529F;&#x80FD;&#x5217;&#x8868;&#x3002;</p>
+<p>&#x4E3B;&#x8981;&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x7ED3;&#x6784;</p>
+<p><img src="img/ntlm_basic/image-20191119100921744.png" alt="image-20191119100921744"></p>
+<p>&#x6293;&#x5305;&#x67E5;&#x770B;&#x5BF9;&#x5E94;&#x7684;&#x4FE1;&#x606F;&#x5982;&#x4E0B;</p>
+<p><img src="img/ntlm_basic/image-20191118192434619.png" alt="image-20191118192434619"></p>
+<p>&#x5982;&#x679C;&#x60F3;&#x4ED4;&#x7EC6;&#x7406;&#x89E3;&#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#x8BF7;&#x9605;&#x8BFB;&#x5B98;&#x65B9;&#x6587;&#x6863;<a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/b34032e5-3aae-4bc6-84c3-c6d80eadf7f2" target="_blank">NEGOTIATE_MESSAGE</a></p>
+<h3 id="2-type-2-&#x8D28;&#x8BE2;">2. type 2 &#x8D28;&#x8BE2;</h3>
+<p>&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x662F;&#x670D;&#x52A1;&#x5668;&#x7528;type 2&#x6D88;&#x606F;(&#x8D28;&#x8BE2;)&#x8FDB;&#x884C;&#x54CD;&#x5E94;&#xFF0C;&#x8FD9;&#x5305;&#x542B;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#x548C;&#x540C;&#x610F;&#x7684;&#x529F;&#x80FD;&#x5217;&#x8868;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x6700;&#x91CD;&#x8981;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x5305;&#x542B;&#x670D;&#x52A1;&#x5668;&#x4EA7;&#x751F;&#x7684;Challenge&#x3002;</p>
+<p>&#x4E3B;&#x8981; &#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x7ED3;&#x6784;</p>
+<p><img src="img/ntlm_basic/image-20191119100959608.png" alt="image-20191119100959608"></p>
+<p>&#x5176;&#x4E2D;&#x6700;&#x4E3B;&#x8981;&#x7684;&#x4FE1;&#x606F;&#x662F;challenge&#x3002;&#x540E;&#x9762;&#x52A0;&#x5BC6;&#x9A8C;&#x8BC1;&#x4F9D;&#x8D56;&#x4E8E;challenge</p>
+<p>&#x6293;&#x5305;&#x67E5;&#x770B;&#x5BF9;&#x5E94;&#x7684;&#x4FE1;&#x606F;&#x5982;&#x4E0B;</p>
+<p><img src="img/ntlm_basic/image-20191118192532383.png" alt="image-20191118192532383"></p>
+<p>&#x5982;&#x679C;&#x60F3;&#x4ED4;&#x7EC6;&#x7406;&#x89E3;&#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#x8BF7;&#x9605;&#x8BFB;&#x5B98;&#x65B9;&#x6587;&#x6863;<a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/801a4681-8809-4be9-ab0d-61dcfe762786" target="_blank">CHALLENGE_MESSAGE</a></p>
+<h3 id="3-type-3-&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;">3. type 3 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;</h3>
+<p>&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5BA2;&#x6237;&#x7AEF;&#x63A5;&#x6536;&#x5230;challenge&#x4E4B;&#x540E;&#xFF0C;&#x4F7F;&#x7528;&#x7528;&#x6237;hash&#x4E0E;challenge&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#x8FD0;&#x7B97;&#x5F97;&#x5230;response&#xFF0C;&#x5C06;response,username,challenge&#x53D1;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#x3002;&#x6D88;&#x606F;&#x4E2D;&#x7684;response&#x662F;&#x6700;&#x5173;&#x952E;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x5411;&#x670D;&#x52A1;&#x5668;&#x8BC1;&#x660E;&#x5BA2;&#x6237;&#x7AEF;&#x7528;&#x6237;&#x5DF2;&#x7ECF;&#x77E5;&#x9053;&#x5E10;&#x6237;&#x5BC6;&#x7801;&#x3002;</p>
+<p>&#x4E3B;&#x8981;&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x7ED3;&#x6784;</p>
+<p><img src="img/ntlm_basic/image-20191119101155300.png" alt="image-20191119101155300"></p>
+<p>&#x8FD9;&#x91CC;&#x7684;Challeng&#x4E0D;&#x540C;&#x4E8E;type2 &#x7684;Challenge&#xFF0C;&#x8FD9;&#x91CC;&#x7684;Challenge&#x662F;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x7684;&#x5BA2;&#x6237;&#x7AEF;nonce&#x3002;</p>
+<p>MIC&#x662F;&#x6821;&#x9A8C;&#x548C;&#xFF0C;&#x8BBE;&#x8BA1;MIC&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x8FD9;&#x4E2A;&#x5305;&#x4E2D;&#x9014;&#x88AB;&#x4FEE;&#x6539;</p>
+<p>session_key&#x662F;&#x5728;&#x8981;&#x6C42;&#x8FDB;&#x884C;&#x7B7E;&#x540D;&#x7684;&#x65F6;&#x5019;&#x7528;&#x7684;&#xFF0C;&#x7528;&#x6765;&#x8FDB;&#x884C;&#x534F;&#x5546;&#x52A0;&#x5BC6;&#x5BC6;&#x94A5;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x4E9B;&#x6587;&#x7AE0;&#x4F1A;&#x8BF4;session_key&#x5C31;&#x662F;&#x52A0;&#x5BC6;&#x5BC6;&#x94A5;&#xFF0C;&#x9700;&#x8981;&#x62E5;&#x6709;&#x7528;&#x6237;hash&#x624D;&#x80FD;&#x8BA1;&#x7B97;&#x51FA;&#x6765;&#xFF0C;&#x56E0;&#x6B64;&#x653B;&#x51FB;&#x8005;&#x7B97;&#x4E0D;&#x51FA;&#x6765;&#xFF0C;&#x5C31;&#x65E0;&#x6CD5;&#x52A0;&#x89E3;&#x5BC6;&#x5305;&#x3002;&#x4F46;&#x662F;&#x60F3;&#x60F3;&#x5C31;&#x4E0D;&#x53EF;&#x80FD;&#xFF0C;&#x8FD9;&#x4E2A;session_key&#x5DF2;&#x7ECF;&#x5728;&#x6D41;&#x91CF;&#x91CC;&#x9762;&#x660E;&#x6587;&#x4F20;&#x8F93;&#xFF0C;&#x90A3;&#x653B;&#x51FB;&#x8005;&#x62FF;&#x5230;&#x4E4B;&#x540E;&#x4E0D;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x52A0;&#x89E3;&#x5BC6;&#x5305;&#x4E86;&#x3002;&#x5F53;&#x7136;&#x8FD9;&#x662F;&#x540E;&#x8BDD;&#xFF0C;&#x540E;&#x9762;&#x8BB2;&#x7B7E;&#x540D;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x8BE6;&#x7EC6;&#x8BB2;&#x8BB2;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x6293;&#x5305;&#x67E5;&#x770B;&#x5BF9;&#x5E94;&#x7684;&#x4FE1;&#x606F;&#x5982;&#x4E0B;</p>
+<p><img src="img/ntlm_basic/image-20191118192616222.png" alt="image-20191118192616222"></p>
+<p>&#x5982;&#x679C;&#x60F3;&#x4ED4;&#x7EC6;&#x7406;&#x89E3;&#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#x8BF7;&#x9605;&#x8BFB;&#x5B98;&#x65B9;&#x6587;&#x6863;<a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/033d32cc-88f9-4483-9bf2-b273055038ce" target="_blank">AUTHENTICATE_MESSAGE</a></p>
+<h2 id="0x03-net-ntlm-hash">0x03 Net-ntlm hash</h2>
+<p>&#x5728;type3&#x4E2D;&#x7684;&#x54CD;&#x5E94;&#xFF0C;&#x6709;&#x516D;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x54CD;&#x5E94;</p>
+<ul>
+<li><p>LM(LAN Manager)&#x54CD;&#x5E94; - &#x7531;&#x5927;&#x591A;&#x6570;&#x8F83;&#x65E9;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#xFF0C;&#x8FD9;&#x662F;&#x201C;&#x539F;&#x59CB;&#x201D;&#x54CD;&#x5E94;&#x7C7B;&#x578B;&#x3002;</p>
+</li>
+<li><p>NTLM v1&#x54CD;&#x5E94; - &#x8FD9;&#x662F;&#x7531;&#x57FA;&#x4E8E;NT&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x7684;&#xFF0C;&#x5305;&#x62EC;Windows 2000&#x548C;XP&#x3002;</p>
+</li>
+<li><p>NTLMv2&#x54CD;&#x5E94; - &#x5728;Windows NT Service Pack 4&#x4E2D;&#x5F15;&#x5165;&#x7684;&#x4E00;&#x79CD;&#x8F83;&#x65B0;&#x7684;&#x54CD;&#x5E94;&#x7C7B;&#x578B;&#x3002;&#x5B83;&#x66FF;&#x6362;&#x542F;&#x7528;&#x4E86; NTLM&#x7248;&#x672C;2&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x7684;NTLM&#x54CD;&#x5E94;&#x3002;</p>
+</li>
+<li><p>LMv2&#x54CD;&#x5E94; - &#x66FF;&#x4EE3;NTLM&#x7248;&#x672C;2&#x7CFB;&#x7EDF;&#x4E0A;&#x7684;LM&#x54CD;&#x5E94;&#x3002;</p>
+</li>
+<li><p>NTLM2&#x4F1A;&#x8BDD;&#x54CD;&#x5E94; - &#x7528;&#x4E8E;&#x5728;&#x6CA1;&#x6709;NTLMv2&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x534F;&#x5546;NTLM2&#x4F1A;&#x8BDD;&#x5B89;&#x5168;&#x6027;&#x65F6;&#xFF0C;&#x6B64;&#x65B9;&#x6848;&#x4F1A;&#x66F4;&#x6539;LM   NTLM&#x54CD;&#x5E94;&#x7684;&#x8BED;&#x4E49;&#x3002;</p>
+</li>
+<li><p>&#x533F;&#x540D;&#x54CD;&#x5E94; - &#x5F53;&#x533F;&#x540D;&#x4E0A;&#x4E0B;&#x6587;&#x6B63;&#x5728;&#x5EFA;&#x7ACB;&#x65F6;&#x4F7F;&#x7528;; &#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x5B9E;&#x9645;&#x7684;&#x8BC1;&#x4E66;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x771F;&#x6B63;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x3002;&#x201C;&#x5B58; &#x6839;&#x201D;&#x5B57;&#x6BB5;&#x663E;&#x793A;&#x5728;&#x7C7B;&#x578B;3&#x6D88;&#x606F;&#x4E2D;&#x3002; </p>
+<p>&#x8FD9;&#x516D;&#x79CD;&#x4F7F;&#x7528;&#x7684;&#x52A0;&#x5BC6;&#x6D41;&#x7A0B;&#x4E00;&#x6837;&#xFF0C;&#x90FD;&#x662F;&#x524D;&#x9762;&#x6211;&#x4EEC;&#x8BF4;&#x7684;Challenge/Response &#x9A8C;&#x8BC1;&#x673A;&#x5236;,&#x533A;&#x522B;&#x5728;Challenge&#x548C;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#x4E0D;&#x540C;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4FA7;&#x91CD;&#x8BB2;&#x4E0B;NTLM v1&#x54CD;&#x5E94;&#x548C;NTLMv2&#x54CD;&#x5E94;</p>
+</li>
+<li><p>v2&#x662F;16&#x4F4D;&#x7684;Challenge&#xFF0C;&#x800C;v1&#x662F;8&#x4F4D;&#x7684;Challenge</p>
+</li>
+<li><p>v1&#x662F;&#x5C06; 16&#x5B57;&#x8282;&#x7684;NTLM hash&#x7A7A;&#x586B;&#x5145;&#x4E3A;21&#x4E2A;&#x5B57;&#x8282;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x6210;&#x4E09;&#x7EC4;&#xFF0C;&#x6BCF;&#x7EC4;7&#x6BD4;&#x7279;&#xFF0C;&#x4F5C;&#x4E3A;3DES&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#x7684;&#x4E09;&#x7EC4;&#x5BC6;&#x94A5;&#xFF0C;&#x52A0;&#x5BC6;Server&#x53D1;&#x6765;&#x7684;Challenge&#x3002; &#x5C06;&#x8FD9;&#x4E09;&#x4E2A;&#x5BC6;&#x6587;&#x503C;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#x5F97;&#x5230;response&#x3002; </p>
+<p>&#x800C;v2&#x662F;&#x7684;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#x662F;&#x3002;</p>
+<p>&#x200B;    (1).  &#x5C06;Unicode&#x540E;&#x7684;&#x5927;&#x5199;&#x7528;&#x6237;&#x540D;&#x4E0E;Unicode&#x540E;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x76EE;&#x6807;&#xFF08;&#x5728;Type 3&#x6D88;&#x606F;&#x7684;&quot;TargetName&quot;&#x5B57;&#x6BB5;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x57DF;&#x6216;&#x670D;&#x52A1;&#x5668;&#x540D;&#x79F0;&#xFF09;&#x62FC;&#x5728;&#x4E00;&#x8D77;&#x3002;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x7528;&#x6237;&#x540D;&#x5C06;&#x8F6C;&#x6362;&#x4E3A;&#x5927;&#x5199;&#xFF0C;&#x800C;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x76EE;&#x6807;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#xFF0C;&#x5E76;&#x4E14;&#x5FC5;&#x987B;&#x4E0E;&#x201C;TargetName&#x201D;&#x5B57;&#x6BB5;&#x4E2D;&#x663E;&#x793A;&#x7684;&#x5927;&#x5C0F;&#x5199;&#x5339;&#x914D;&#x3002;&#x4F7F;&#x7528;16&#x5B57;&#x8282;NTLM&#x54C8;&#x5E0C;&#x4F5C;&#x4E3A;&#x5BC6;&#x94A5;&#xFF0C;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x503C;&#x3002;</p>
+<p>&#x200B;    (2)  &#x6784;&#x5EFA;&#x4E00;&#x4E2A;blob&#x4FE1;&#x606F;</p>
+<p><img src="img/ntlm_basic/1574090659690.png" alt="1574090659690"></p>
+<p>&#x200B;    (3).  &#x4F7F;&#x7528;16&#x5B57;&#x8282;NTLMv2&#x54C8;&#x5E0C;&#x4F5C;&#x4E3A;&#x5BC6;&#x94A5;&#xFF0C;&#x5C06;HMAC-MD5&#x6D88;&#x606F;&#x8BA4;&#x8BC1;&#x4EE3;&#x7801;&#x7B97;&#x6CD5;&#x52A0;&#x5BC6;&#x4E00;&#x4E2A;&#x503C;(&#x6765;&#x81EA;type 2&#x7684;Challenge&#x4E0E;Blob&#x62FC;&#x63A5;&#x5728;&#x4E00;&#x8D77;)&#x3002;&#x5F97;&#x5230;&#x4E00;&#x4E2A;16&#x5B57;&#x8282;&#x7684;NTProofStr&#x3002; </p>
+<p>&#x200B;    (4).  &#x5C06;NTProofStr&#x4E0E;Blob&#x62FC;&#x63A5;&#x8D77;&#x6765;&#x5F62;&#x6210;&#x5F97;&#x5230;response&#x3002; </p>
+<p>&#x81F3;&#x4E8E;&#x9009;&#x62E9;&#x54EA;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x54CD;&#x5E94;&#x7531;LmCompatibilityLevel&#x51B3;&#x5B9A;&#x3002;</p>
+</li>
+</ul>
+<p>Challenge/Response&#x9A8C;&#x8BC1;&#x673A;&#x5236;&#x91CC;&#x9762;type3 response&#x91CC;&#x9762;&#x5305;&#x542B;Net-ntlm hash&#xFF0C;NTLM v1&#x54CD;&#x5E94;&#x548C;NTLMv2&#x54CD;&#x5E94;&#x5BF9;&#x5E94;&#x7684;&#x5C31;&#x662F;Net-ntlm hash&#x5206;&#x4E3A;Net-ntlm hash v1&#x548C;Net-ntlm hash v2&#x3002;</p>
+<p>Net-ntlm hash v1&#x7684;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;</p>
+<pre><code>username::hostname:LM response:NTLM response:challenge
+</code></pre><p>Net-ntlm hash v2&#x7684;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;</p>
+<pre><code>username::domain:challenge:HMAC-MD5:blob
+</code></pre><p>&#x4E0B;&#x9762;&#x6F14;&#x793A;&#x4ECE;response&#x91CC;&#x9762;&#x63D0;&#x53D6;NTLMv2</p>
+<p><img src="img/ntlm_basic/image-20191118192616222.png" alt="image-20191118192616222"></p>
+<p>&#x8FD9;&#x91CC;&#x7684;challenge&#x662F;type2 &#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;challenge&#x4E0D;&#x662F;type3 &#x6D41;&#x91CF;&#x5305;&#x91CC;&#x9762;&#x7684;client Challenge</p>
+<p><img src="img/ntlm_basic/image-20191119102807211.png" alt="image-20191119102807211"></p>
+<p>&#x5C31;&#x662F;<code>7ac429882efc7e29</code></p>
+<p>HMAC-MD5&#x5BF9;&#x5E94;&#x6570;&#x636E;&#x5305;&#x4E2D;&#x7684;NTProofSt</p>
+<p><img src="img/ntlm_basic/image-20191119102906275.png" alt="image-20191119102906275"></p>
+<p><code>00a9055c4007c7eb1c1386504d0a7162</code></p>
+<p>blob&#x5C31;&#x662F;response &#x51CF;&#x53BB;NTP1roofStr&#x3002;(&#x56E0;&#x4E3A;&#x5728;&#x8BA1;&#x7B97;response &#x7684;&#x65F6;&#x5019;&#xFF0C;response &#x5C31;&#x662F;&#x7531;NTProofStr&#x52A0;&#x4E0A;blob)</p>
+<p><img src="img/ntlm_basic/image-20191119102950092.png" alt="image-20191119102950092"></p>
+<p>&#x5C31;&#x662F;<code>0101000000000000772eaacee59dd5014b484239683639570000000001000c00570049004e0037002d00310002000800540045005300540003002200570049004e0037002d0031002e0074006500730074002e006c006f00630061006c000400140074006500730074002e006c006f00630061006c000500140074006500730074002e006c006f00630061006c0007000800772eaacee59dd5010900160063006900660073002f00570049004e0037002d0031000000000000000000</code></p>
+<p>&#x6240;&#x4EE5;&#x6700;&#x540E;&#x7684;ntlm v2 hash&#x662F;<code>win7::test.local:7ac429882efc7e29:00a9055c4007c7eb1c1386504d0a7162:0101000000000000772eaacee59dd5014b484239683639570000000001000c00570049004e0037002d00310002000800540045005300540003002200570049004e0037002d0031002e0074006500730074002e006c006f00630061006c000400140074006500730074002e006c006f00630061006c000500140074006500730074002e006c006f00630061006c0007000800772eaacee59dd5010900160063006900660073002f00570049004e0037002d0031000000000000000000</code></p>
+<h2 id="0x04-ssp--sspi">0x04 SSP &amp; SSPI</h2>
+<p><img src="img/ntlm_basic/201601290102543632111.gif" alt="201601290102543632111"></p>
+<ul>
+<li>SSPI(Security Support Provider Interface)</li>
+</ul>
+<p>&#x8FD9;&#x662F; Windows &#x5B9A;&#x4E49;&#x7684;&#x4E00;&#x5957;&#x63A5;&#x53E3;&#xFF0C;&#x6B64;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x4E86;&#x4E0E;&#x5B89;&#x5168;&#x6709;&#x5173;&#x7684;&#x529F;&#x80FD;&#x51FD;&#x6570;&#xFF0C; &#x7528;&#x6765;&#x83B7;&#x5F97;&#x9A8C;&#x8BC1;&#x3001;&#x4FE1;&#x606F;&#x5B8C;&#x6574;&#x6027;&#x3001;&#x4FE1;&#x606F;&#x9690;&#x79C1;&#x7B49;&#x5B89;&#x5168;&#x529F;&#x80FD;&#xFF0C;&#x5C31;&#x662F;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x5957;&#x63A5;&#x53E3;&#x51FD;&#x6570;&#x7528;&#x6765;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF0C;&#x7B7E;&#x540D;&#x7B49;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#x3002;</p>
+<ul>
+<li>SSP(Security Support Provider)</li>
+</ul>
+<p>&#x200B;    SSPI &#x7684;&#x5B9E;&#x73B0;&#x8005;&#xFF0C;&#x5BF9;SSPI&#x76F8;&#x5173;&#x529F;&#x80FD;&#x51FD;&#x6570;&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x3002;&#x5FAE;&#x8F6F;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x4E86;&#x5982;&#x4E0B;&#x7684; SSP&#xFF0C;&#x7528;&#x4E8E;&#x63D0;&#x4F9B;&#x5B89;&#x5168;&#x529F;&#x80FD;&#xFF1A;</p>
+<ol>
+<li>NTLM SSP</li>
+<li>Kerberos</li>
+<li>Cred SSP</li>
+<li>Digest SSP</li>
+<li>Negotiate SSP</li>
+<li>Schannel SSP</li>
+<li>Negotiate Extensions SSP</li>
+<li>PKU2U SSP</li>
+</ol>
+<p>&#x5728;&#x7CFB;&#x7EDF;&#x5C42;&#x9762;&#xFF0C;SSP&#x5C31;&#x662F;&#x4E00;&#x4E2A;dll&#xFF0C;&#x6765;&#x5B9E;&#x73B0;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x7B49;&#x5B89;&#x5168;&#x529F;&#x80FD;&#xFF0C;&#x5B9E;&#x73B0;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x673A;&#x5236;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x3002;&#x6BD4;&#x5982; NTLM SSP &#x5B9E;&#x73B0;&#x7684;&#x5C31;&#x662F;&#x4E00;&#x79CD; Challenge/Response &#x9A8C;&#x8BC1;&#x673A;&#x5236;&#x3002;&#x800C; Kerberos &#x5B9E;&#x73B0;&#x7684;&#x5C31;&#x662F;&#x57FA;&#x4E8E; ticket &#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x673A;&#x5236;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7F16;&#x5199;&#x81EA;&#x5DF1;&#x7684; SSP&#xFF0C;&#x7136;&#x540E;&#x6CE8;&#x518C;&#x5230;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x8BA9;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x652F;&#x6301;&#x66F4;&#x591A;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x5730;&#x65B9;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x7559;&#x4F5C;&#x540E;&#x95E8;&#x3002;&#x8FD9;&#x4E2A;&#x5730;&#x65B9;&#x5C31;&#x4E0D;&#x8BE6;&#x7EC6;&#x5C55;&#x5F00;&#x4E86;&#x3002;&#x5177;&#x4F53;&#x7684;&#x7EC6;&#x8282;&#x89C1;<a href="http://drops.wooyun.org/tips/12518" target="_blank">&#x57DF;&#x6E17;&#x900F;&#x2014;&#x2014;Security Support Provider</a></p>
+<p>&#x6211;&#x4EEC;&#x6293;&#x5305;&#x5206;&#x6790;ntlm&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x4F1A;&#x770B;&#x5230;ntlm&#x662F;&#x653E;&#x5728;GSS-API&#x91CC;&#x9762;</p>
+<p><img src="img/ntlm_basic/image-20191118152041789.png" alt="image-20191118152041789"></p>
+<p>&#x4E3A;&#x5565;&#x8FD9;&#x91CC;&#x4F1A;&#x51FA;&#x73B0;GSSAPI&#x5462;&#xFF0C;SSPI&#x662F;GSSAPI&#x7684;&#x4E00;&#x4E2A;&#x4E13;&#x6709;&#x53D8;&#x4F53;&#xFF0C;&#x8FDB;&#x884C;&#x4E86;&#x6269;&#x5C55;&#x5E76;&#x5177;&#x6709;&#x8BB8;&#x591A;&#x7279;&#x5B9A;&#x4E8E;Windows&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;SSPI&#x751F;&#x6210;&#x548C;&#x63A5;&#x53D7;&#x7684;&#x4EE4;&#x724C;&#x5927;&#x591A;&#x4E0E;GSS-API&#x517C;&#x5BB9;&#x3002;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x51FA;&#x73B0;GSSAPI&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x517C;&#x5BB9;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4E0D;&#x5FC5;&#x7406;&#x4F1A;&#x3002;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4ECE;NTLM SSP&#x5F00;&#x59CB;&#x770B;&#x8D77;&#x3002;&#x6CE8;&#x518C;&#x4E3A;SSP&#x7684;&#x4E00;&#x4E2A;&#x597D;&#x5904;&#x5C31;&#x662F;&#xFF0C;SSP&#x5B9E;&#x73B0;&#x4E86;&#x4E86;&#x4E0E;&#x5B89;&#x5168;&#x6709;&#x5173;&#x7684;&#x529F;&#x80FD;&#x51FD;&#x6570;&#xFF0C;&#x90A3;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;(&#x6BD4;&#x5982;SMB)&#x5728;&#x8FDB;&#x884C;&#x8EAB;&#x4EFD;&#x8BA4;&#x8BC1;&#x7B49;&#x529F;&#x80FD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x8003;&#x8651;&#x534F;&#x8BAE;&#x7EC6;&#x8282;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x8C03;&#x7528;&#x76F8;&#x5173;&#x7684;&#x51FD;&#x6570;&#x5373;&#x53EF;&#x3002;&#x800C;&#x8BA4;&#x8BC1;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x6D41;&#x91CF;&#x5D4C;&#x5165;&#x5728;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#x91CC;&#x9762;&#x3002;&#x4E0D;&#x50CF;kerbreos&#xFF0C;&#x65E2;&#x53EF;&#x4EE5;&#x9576;&#x5D4C;&#x5728;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#x91CC;&#x9762;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x72EC;&#x7ACB;&#x7684;&#x5E94;&#x7528;&#x5C42;&#x534F;&#x8BAE;&#x3002;ntlm&#x662F;&#x53EA;&#x80FD;&#x9576;&#x5D4C;&#x5728;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#x91CC;&#x9762;&#xFF0C;&#x6D88;&#x606F;&#x7684;&#x4F20;&#x8F93;&#x4F9D;&#x8D56;&#x4E8E;&#x4F7F;&#x7528;ntlm&#x7684;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#x3002;&#x6BD4;&#x5982;&#x9576;&#x5D4C;&#x5728;SMB&#x534F;&#x8BAE;&#x91CC;&#x9762;&#x662F;&#x8FD9;&#x6837;&#x3002;</p>
+<p><img src="img/ntlm_basic/image-20191118154057524.png" alt="image-20191118154057524"></p>
+<p>&#x9576;&#x5D4C;&#x5728;HTTP&#x534F;&#x8BAE;&#x91CC;&#x9762;&#x662F;&#x8FD9;&#x6837;</p>
+<p><img src="img/ntlm_basic/image-20191118154239422.png" alt="image-20191118154239422"></p>
+<h2 id="0x05-lmcompatibilitylevel">0x05 LmCompatibilityLevel</h2>
+<p>&#x6B64;&#x5B89;&#x5168;&#x8BBE;&#x7F6E;&#x786E;&#x5B9A;&#x7F51;&#x7EDC;&#x767B;&#x5F55;&#x4F7F;&#x7528;&#x7684;&#x8D28;&#x8BE2;/&#x54CD;&#x5E94;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x534F;&#x8BAE;&#x3002;&#x6B64;&#x9009;&#x9879;&#x4F1A;&#x5F71;&#x54CD;&#x5BA2;&#x6237;&#x7AEF;&#x4F7F;&#x7528;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x534F;&#x8BAE;&#x7684;&#x7B49;&#x7EA7;&#x3001;&#x534F;&#x5546;&#x7684;&#x4F1A;&#x8BDD;&#x5B89;&#x5168;&#x7684;&#x7B49;&#x7EA7;&#x4EE5;&#x53CA;&#x670D;&#x52A1;&#x5668;&#x63A5;&#x53D7;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x7684;&#x7B49;&#x7EA7;&#xFF0C;&#x5176;&#x8BBE;&#x7F6E;&#x503C;&#x5982;&#x4E0B;:</p>
+<ul>
+<li><p>&#x53D1;&#x9001; LM  NTLM &#x54CD;&#x5E94;: &#x5BA2;&#x6237;&#x7AEF;&#x4F7F;&#x7528; LM &#x548C; NTLM &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF0C;&#x800C;&#x51B3;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528; NTLMv2 &#x4F1A;&#x8BDD;&#x5B89;&#x5168;&#xFF1B;&#x57DF;&#x63A7;&#x5236;&#x5668;&#x63A5;&#x53D7; LM&#x3001;NTLM &#x548C; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x3002;</p>
+</li>
+<li><p>&#x53D1;&#x9001; LM &amp; NTLM - &#x5982;&#x679C;&#x534F;&#x5546;&#x4E00;&#x81F4;&#xFF0C;&#x5219;&#x4F7F;&#x7528; NTLMv2 &#x4F1A;&#x8BDD;&#x5B89;&#x5168;: &#x5BA2;&#x6237;&#x7AEF;&#x4F7F;&#x7528; LM &#x548C; NTLM &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#x65F6;&#x4F7F;&#x7528; NTLMv2 &#x4F1A;&#x8BDD;&#x5B89;&#x5168;&#xFF1B;&#x57DF;&#x63A7;&#x5236;&#x5668;&#x63A5;&#x53D7; LM&#x3001;NTLM &#x548C; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x3002;</p>
+</li>
+<li><p>&#x4EC5;&#x53D1;&#x9001; NTLM &#x54CD;&#x5E94;: &#x5BA2;&#x6237;&#x7AEF;&#x4EC5;&#x4F7F;&#x7528; NTLM &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#x65F6;&#x4F7F;&#x7528; NTLMv2 &#x4F1A;&#x8BDD;&#x5B89;&#x5168;&#xFF1B;&#x57DF;&#x63A7;&#x5236;&#x5668;&#x63A5;&#x53D7; LM&#x3001;NTLM &#x548C; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x3002;</p>
+</li>
+<li><p>&#x4EC5;&#x53D1;&#x9001; NTLMv2 &#x54CD;&#x5E94;: &#x5BA2;&#x6237;&#x7AEF;&#x4EC5;&#x4F7F;&#x7528; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#x65F6;&#x4F7F;&#x7528; NTLMv2 &#x4F1A;&#x8BDD;&#x5B89;&#x5168;&#xFF1B;&#x57DF;&#x63A7;&#x5236;&#x5668;&#x63A5;&#x53D7; LM&#x3001;NTLM &#x548C; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x3002;</p>
+</li>
+<li><p>&#x4EC5;&#x53D1;&#x9001; NTLMv2 &#x54CD;&#x5E94;\&#x62D2;&#x7EDD; LM: &#x5BA2;&#x6237;&#x7AEF;&#x4EC5;&#x4F7F;&#x7528; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#x65F6;&#x4F7F;&#x7528; NTLMv2 &#x4F1A;&#x8BDD;&#x5B89;&#x5168;&#xFF1B;&#x57DF;&#x63A7;&#x5236;&#x5668;&#x62D2;&#x7EDD; LM (&#x4EC5;&#x63A5;&#x53D7; NTLM &#x548C; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;)&#x3002;</p>
+</li>
+<li><p>&#x4EC5;&#x53D1;&#x9001; NTLMv2 &#x54CD;&#x5E94;\&#x62D2;&#x7EDD; LM &amp; NTLM: &#x5BA2;&#x6237;&#x7AEF;&#x4EC5;&#x4F7F;&#x7528; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#x65F6;&#x4F7F;&#x7528; NTLMv2 &#x4F1A;&#x8BDD;&#x5B89;&#x5168;&#xFF1B;&#x57DF;&#x63A7;&#x5236;&#x5668;&#x62D2;&#x7EDD; LM &#x548C; NTLM (&#x4EC5;&#x63A5;&#x53D7; NTLMv2 &#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;)&#x3002;</p>
+</li>
+</ul>
+<p>&#x9ED8;&#x8BA4;&#x503C;:</p>
+<ul>
+<li><p>Windows 2000 &#x4EE5;&#x53CA; Windows XP: &#x53D1;&#x9001; LM &amp; NTLM &#x54CD;&#x5E94;</p>
+</li>
+<li><p>Windows Server 2003: &#x4EC5;&#x53D1;&#x9001; NTLM &#x54CD;&#x5E94;</p>
+</li>
+<li><p>Windows Vista&#x3001;Windows Server 2008&#x3001;Windows 7 &#x4EE5;&#x53CA; Windows Server 2008 R2&#x53CA;&#x4EE5;&#x4E0A;: &#x4EC5;&#x53D1;&#x9001; NTLMv2 &#x54CD;&#x5E94;</p>
+</li>
+</ul>
+<p>&#x200B;    <img src="img/ntlm_basic/image-20191115140103358.png" alt="image-20191115140103358"></p>
+<h2 id="0x06-&#x76F8;&#x5173;&#x7684;&#x5B89;&#x5168;&#x95EE;&#x9898;">0x06 &#x76F8;&#x5173;&#x7684;&#x5B89;&#x5168;&#x95EE;&#x9898;</h2>
+<h3 id="1-pass-the-hash">1. pass the hash</h3>
+<p>&#x4E5F;&#x53EB;hash&#x4F20;&#x9012;&#x653B;&#x51FB;,&#x7B80;&#x79F0;PTH&#x3002;</p>
+<p>&#x5728;type3&#x8BA1;&#x7B97;response&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x662F;&#x4F7F;&#x7528;&#x7528;&#x6237;&#x7684;hash&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7528;&#x6237;&#x5BC6;&#x7801;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#x7684;&#x3002;&#x56E0;&#x6B64;&#x5728;&#x6A21;&#x62DF;&#x7528;&#x6237;&#x767B;&#x5F55;&#x7684;&#x65F6;&#x5019;&#x3002;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x7528;&#x6237;&#x660E;&#x6587;&#x5BC6;&#x7801;&#x7684;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x7528;&#x6237;hash&#x3002;&#x5FAE;&#x8F6F;&#x5728;2014&#x5E74;5&#x6708;13&#x65E5;&#x53D1;&#x5E03;&#x4E86;&#x9488;&#x5BF9;Pass The Hash&#x7684;&#x66F4;&#x65B0;&#x8865;&#x4E01;kb2871997&#xFF0C;&#x6807;&#x9898;&#x4E3A;<code>&quot;Update to fix the Pass-The-Hash Vulnerability&quot;</code>,&#x800C;&#x5728;&#x4E00;&#x5468;&#x540E;&#x5374;&#x628A;&#x6807;&#x9898;&#x6539;&#x6210;&#x4E86;<code>&quot;Update to improve credentials protection and management&quot;</code>&#x3002;(&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x8FD9;&#x4E2A;&#x8865;&#x4E01;&#x4E0D;&#x4EC5;&#x80FD;&#x591F;&#x7F13;&#x89E3;PTH,&#x8FD8;&#x80FD;&#x963B;&#x6B62;mimikatz &#x6293;&#x53D6;&#x660E;&#x6587;&#x5BC6;&#x7801;&#xFF0C;&#x672C;&#x7CFB;&#x5217;&#x6587;&#x7AE0;&#x4FA7;&#x91CD;&#x4E8E;&#x534F;&#x8BAE;&#x8BA4;&#x8BC1;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x6B64;&#x4E0D;&#x5728;&#x8FD9;&#x91CC;&#x6269;&#x5C55;&#x4ECB;&#x7ECD;&#x5176;&#x4ED6;&#x5185;&#x5BB9;)&#x3002;</p>
+<ul>
+<li>(1) kb2871997</li>
+</ul>
+<p>&#x8FD9;&#x91CC;&#x6765;&#x63A2;&#x8BA8;&#x4E0B;&#x4E3A;&#x5565;kb2871997&#x80FD;&#x7F13;&#x89E3;pth&#xFF0C;&#x53C8;&#x4E0D;&#x80FD;&#x675C;&#x7EDD;Pth&#x3002;</p>
+<p>&#x9996;&#x5148;kb2871997&#x5BF9;&#x4E8E;&#x672C;&#x5730;Administrator(rid&#x4E3A;500&#xFF0C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x53EA;&#x8BA4;rid&#x4E0D;&#x8BA4;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x6211;&#x4EEC;&#x7EDF;&#x79F0;RID 500&#x5E10;&#x6237;)&#x548C;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x7EC4;&#x7684;&#x57DF;&#x7528;&#x6237;&#x662F;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#x7684;&#x3002;</p>
+<p>&#x5728;&#x6253;&#x4E86;kb2871997&#x8865;&#x4E01;&#x7684;&#x673A;&#x5B50;&#x4E0A;</p>
+<p><img src="img/ntlm_basic/image-20191117232014249.png" alt="image-20191117232014249"></p>
+<p>&#x4F7F;&#x7528;RID 500&#x5E10;&#x6237;&#x8FDB;&#x884C;pth&#x767B;&#x5F55;</p>
+<p><img src="img/ntlm_basic/image-20191117232605568.png" alt="image-20191117232605568"></p>
+<p>&#x4F7F;&#x7528;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x7EC4;&#x7684;&#x57DF;&#x7528;&#x6237;&#x8FDB;&#x884C;pth&#x767B;&#x5F55;</p>
+<p><img src="img/ntlm_basic/image-20191117232435973.png" alt="image-20191117232435973"></p>
+<p>&#x4F7F;&#x7528;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x7EC4;&#x7684;&#x975E;RID 500&#x5E10;&#x6237;&#x8FDB;&#x884C;pth&#x767B;&#x5F55;</p>
+<p><img src="img/ntlm_basic/image-20191117232643710.png" alt="image-20191117232643710"></p>
+<p>&#x53D1;&#x73B0;ntlm&#x8BA4;&#x8BC1;&#x901A;&#x8FC7;&#x4E4B;&#x540E;&#xFF0C;&#x5BF9;ADMIN$&#x6CA1;&#x6709;&#x5199;&#x5165;&#x6743;&#x9650;&#x3002;&#x90A3;&#x4E48;&#x662F;&#x4EC0;&#x4E48;&#x963B;&#x6B62;&#x4E86;&#x6211;&#x4EEC;&#x5BF9;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x7EC4;&#x7684;&#x975E;RID500&#x5E10;&#x6237;&#x4F7F;&#x7528;&#x54C8;&#x5E0C;&#x4F20;&#x9012;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;RID 500&#x5E10;&#x6237;&#x5177;&#x6709;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#xFF1F;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x6210;&#x5458;&#x7684;&#x57DF;&#x5E10;&#x6237;&#x4E5F;&#x53EF;&#x4EE5;&#x514D;&#x9664;&#x8FD9;&#x79CD;&#x963B;&#x6B62;&#x884C;&#x4E3A;&#x3002;(&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x4E4B;&#x524D;&#x5728;winrm&#x8FDB;&#x884C;&#x8FDC;&#x7A0B;&#x767B;&#x5F55;&#x7684;&#x65F6;&#x5019;&#x6211;&#x4E5F;&#x9047;&#x5230;&#x76F8;&#x5173;&#x7684;&#x95EE;&#x9898;&#xFF0C;winrm&#x8FDC;&#x7A0B;&#x767B;&#x5F55;&#x53EA;&#x80FD;&#x4F7F;&#x7528;RID 500&#x5E10;&#x6237;&#x4E0E;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x6210;&#x5458;&#x7684;&#x57DF;&#x7528;&#x6237;&#x767B;&#x5F55;&#xFF0C;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x7EC4;&#x7684;&#x975E;RID500&#x8D26;&#x6237;)</p>
+<p>&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#x7684;&#x771F;&#x6B63;&#x7F6A;&#x9B41;&#x7978;&#x9996;&#x662F;&#x8FDC;&#x7A0B;&#x8BBF;&#x95EE;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7684;&#x7528;&#x6237;&#x5E10;&#x6237;&#x63A7;&#x5236;&#xFF08;UAC&#xFF09;&#x4EE4;&#x724C;&#x7B5B;&#x9009;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x8FDC;&#x7A0B;&#x8FDE;&#x63A5;&#x5230;Windows Vista +&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x4EFB;&#x4F55;&#x975E;RID 500&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x5E10;&#x6237;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x901A;&#x8FC7;WMI&#xFF0C;PSEXEC&#x8FD8;&#x662F;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;(&#x6709;&#x4E2A;&#x4F8B;&#x5916;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x901A;&#x8FC7;RDP&#x8FDC;&#x7A0B;)&#xFF0C;&#x5373;&#x4F7F;&#x7528;&#x6237;&#x662F;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x4EE4;&#x724C;&#x90FD;&#x662F;&#x5DF2;&#x8FC7;&#x6EE4;&#x7684;&#x7BA1;&#x7406;&#x5458;&#x4EE4;&#x724C;&#x3002; </p>
+<p>&#x5DF2;&#x8FC7;&#x6EE4;&#x7684;&#x7BA1;&#x7406;&#x5458;&#x4EE4;&#x724C;&#x6709;&#x5982;&#x4E0B;&#x7279;&#x5F81;(&#x6DF1;&#x5165;&#x89E3;&#x6790;Windows&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7B2C;&#x516D;&#x7248;P501)</p>
+<p><img src="img/ntlm_basic/image-20191118131721441.png" alt="image-20191118131721441"></p>
+<p><img src="img/ntlm_basic/image-20191118131915486.png" alt="image-20191118131915486"></p>
+<p>&#x901A;&#x4FD7;&#x70B9;&#x6765;&#x8BF4;&#x5C31;&#x662F;&#x7BA1;&#x7406;&#x5458;&#x7EC4;&#x7684;&#x975E;RID500&#x8D26;&#x6237;&#x767B;&#x5F55;&#x4E4B;&#x540E;&#x662F;&#x6CA1;&#x6709;&#x8FC7;UAC&#x7684;&#xFF0C;&#x6240;&#x6709;&#x7279;&#x6743;&#x90FD;&#x88AB;&#x79FB;&#x9664;&#xFF0C;&#x9664;&#x4E86;&#x4E0A;&#x56FE;&#x7684;Change Notify&#x4E4B;&#x7C7B;&#x7684;&#x3002;&#x800C;RID500&#x8D26;&#x6237;&#x767B;&#x5F55;&#x4E4B;&#x540E;&#x4E5F;&#x4EE5;&#x5B8C;&#x5168;&#x7BA1;&#x7406;&#x7279;&#x6743;&#xFF08;&quot;&#x5B8C;&#x5168;&#x4EE4;&#x724C;&#x6A21;&#x5F0F;&quot;&#xFF09;&#x8FD0;&#x884C;&#x6240;&#x6709;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5B9E;&#x9645;&#x662F;&#x4E0D;&#x7528;&#x8FC7;UAC&#x7684;&#xFF0C;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x6D4B;&#x8BD5;&#x4E0B;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x672C;&#x5730;&#x201C;&#x7BA1;&#x7406;&#x5458;&#x201D;&#x7EC4;&#x4E2D;&#x7684;&#x57DF;&#x7528;&#x6237;&#x5E10;&#x6237;&#xFF0C;&#x6587;&#x6863;&#x6307;&#x51FA;&#xFF1A;</p>
+<blockquote>
+<p> &#x5F53;&#x5177;&#x6709;&#x57DF;&#x7528;&#x6237;&#x5E10;&#x6237;&#x7684;&#x7528;&#x6237;&#x8FDC;&#x7A0B;&#x767B;&#x5F55;Windows Vista&#x8BA1;&#x7B97;&#x673A;&#x5E76;&#x4E14;&#x8BE5;&#x7528;&#x6237;&#x662F;Administrators&#x7EC4;&#x7684;&#x6210;&#x5458;&#x65F6;&#xFF0C;&#x57DF;&#x7528;&#x6237;&#x5C06;&#x5728;&#x8FDC;&#x7A0B;&#x8BA1;&#x7B97;&#x673A;&#x4E0A;&#x4EE5;&#x5B8C;&#x5168;&#x7BA1;&#x7406;&#x5458;&#x8BBF;&#x95EE;&#x4EE4;&#x724C;&#x8FD0;&#x884C;&#xFF0C;&#x5E76;&#x4E14;&#x8BE5;&#x7528;&#x6237;&#x7684;UAC&#x88AB;&#x7981;&#x7528;&#x5728;&#x8BE5;&#x4F1A;&#x8BDD;&#x7684;&#x8FDC;&#x7A0B;&#x8BA1;&#x7B97;&#x673A;&#x4E0A;&#x3002;</p>
+</blockquote>
+<p>&#x5982;&#x679C;<code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</code>&#x9879;&#x5B58;&#x5728;(&#x9ED8;&#x8BA4;&#x4E0D;&#x5B58;&#x5728;)&#x4E14;&#x914D;&#x7F6E;&#x4E3A;1&#xFF0C;&#x5C06;&#x6388;&#x4E88;&#x6765;&#x81EA;&#x7BA1;&#x7406;&#x5458;&#x6240;&#x6709;&#x672C;&#x5730;&#x6210;&#x5458;&#x7684;&#x8FDC;&#x7A0B;&#x8FDE;&#x63A5;&#x5B8C;&#x6574;&#x7684;&#x9AD8;&#x5B8C;&#x6574;&#x6027;&#x4EE4;&#x724C;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x672A;&#x8FC7;&#x6EE4;&#x975E;RID 500&#x5E10;&#x6237;&#x8FDE;&#x63A5;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x6210;&#x529F;&#x4F20;&#x9012;&#x54C8;&#x5E0C;&#x503C;&#xFF01;</p>
+<p><img src="img/ntlm_basic/image-20191118000233524.png" alt="image-20191118000233524"></p>
+<p><img src="img/ntlm_basic/image-20191117235851495.png" alt="image-20191117235851495"></p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x8FD9;&#x4E2A;&#x6CE8;&#x518C;&#x8868;&#x9879;&#x662F;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;&#x4EE5;&#x7559;&#x4F5C;&#x540E;&#x95E8;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x610F;&#x601D;&#x7684;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x63D0;&#x8FC7;&#x4E00;&#x5634;&#x7684;&#xFF0C;&#x5728;&#x914D;&#x7F6E;winrm&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E5F;&#x4F1A;&#x9047;&#x5230;&#x540C;&#x6837;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x672C;&#x5730;&#x7BA1;&#x7406;&#x5458;&#x7EC4;&#x7684;&#x975E;RID500&#x8D26;&#x6237;&#x4E0D;&#x80FD;&#x767B;&#x5F55;&#xFF0C;&#x4E8E;&#x662F;&#x6709;&#x4E9B;&#x8FD0;&#x7EF4;&#x5728;&#x641C;&#x5BFB;&#x4E86;&#x4E00;&#x5806;&#x6587;&#x7AE0;&#x540E;&#xFF0C;&#x5F00;&#x542F;&#x8BE5;&#x6CE8;&#x518C;&#x8868;&#x9879;&#x662F;&#x6700;&#x5FEB;&#x6377;&#x6709;&#x6548;&#x7684;&#x95EE;&#x9898;:)&#x3002;</p>
+<ul>
+<li><p>(2) &#x8FDB;&#x884C;pth &#x7684;&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x5DE5;&#x5177;</p>
+<p>&#x4E00;&#x822C;&#x6709;&#x4E24;&#x79CD;&#x573A;&#x666F;&#x5E95;&#x4E0B;&#x9700;&#x8981;&#x7528;&#x5230;pth&#xFF0C;&#x7B2C;&#x4E00;&#x79CD;&#x662F;&#x6211;&#x4EEC;&#x5DF2;&#x77E5;&#x76EE;&#x6807;&#x8BA1;&#x7B97;&#x673A;&#x7684;IP,&#x7528;&#x6237;&#x540D;&#xFF0C;hash&#x5C1D;&#x8BD5;&#x767B;&#x9646;&#x76EE;&#x6807;&#x4E3B;&#x673A;&#x3002;</p>
+<p>&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x573A;&#x666F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x5728;&#x4E00;&#x4E2A;&#x5927;&#x578B;&#x7684;&#x5185;&#x7F51;&#x73AF;&#x5883;&#x5E95;&#x4E0B;&#x83B7;&#x5F97;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x7684;hash&#xFF0C;&#x5C1D;&#x8BD5;&#x53BB;&#x649E;&#x6574;&#x4E2A;&#x5185;&#x7F51;&#x7684;&#x76F8;&#x540C;&#x5BC6;&#x7801;&#x7684;&#x4E3B;&#x673A;&#xFF0C;&#x4ECE;&#x800C;&#x8FDB;&#x884C;&#x6A2A;&#x5411;&#x79FB;&#x52A8;&#x3002;&#x4E0B;&#x9762;&#x5217;&#x4E3E;&#x90E8;&#x5206;pth&#x7684;&#x5DE5;&#x5177;&#x3002;</p>
+<ul>
+<li>mimikatz</li>
+</ul>
+<pre><code>privilege&#xFF1A;&#xFF1A;debug
+sekurlsa::pth /user:win10 /domain:test.local /ntlm:6a6293bc0c56d7b9731e2d5506065e4a
+</code></pre></li>
+</ul>
+<p><img src="img/ntlm_basic/image-20191119110451669.png" alt="image-20191119110451669"></p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;psecex,wmic,at&#x4E4B;&#x7C7B;&#x7684;&#x8FDB;&#x884C;&#x8FDC;&#x7A0B;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x3002;</p>
+<ul>
+<li><p>impacket</p>
+<p>impacket&#x5E95;&#x4E0B;&#x6267;&#x884C;&#x8FDC;&#x7A0B;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x7684;&#x811A;&#x672C;&#x6709;5&#x4E2A;</p>
+<pre><code class="lang-bash">psexec.py
+smbexec.py
+atexec.py
+wmiexec.py
+dcomexec.py
+</code></pre>
+</li>
+</ul>
+<p>&#x90FD;&#x652F;&#x6301;&#x4F7F;&#x7528;hash&#x8FDB;&#x884C;&#x8FDC;&#x7A0B;&#x547D;&#x4EE4;&#x6267;&#x884C;&#xFF0C;&#x901A;&#x8FC7;--hashes&#x6307;&#x5B9A;hash,&#x4EE5;psexec.py&#x4E3A;&#x4F8B;</p>
+<p><img src="img/ntlm_basic/image-20191118004506224.png" alt="image-20191118004506224"></p>
+<ul>
+<li>cobalstrike</li>
+</ul>
+<p>cabalstrike&#x652F;&#x6301;&#x6279;&#x91CF;&#x5F97;&#x8FDB;&#x884C;pth&#xFF0C;&#x5728;&#x6A2A;&#x5411;&#x79FB;&#x52A8;&#x4E2D;&#x649E;&#x5BC6;&#x7801;hash&#x4E2D;&#x7279;&#x522B;&#x6709;&#x6548;</p>
+<p>  <img src="img/ntlm_basic/image-20191118155502037.png" alt="image-20191118155502037"></p>
+<ul>
+<li><p>msf</p>
+<p>msf&#x7684;<code>exploit/windows/smb/psexec_psh</code>&#x6A21;&#x5757;&#x662F;&#x652F;&#x6301;&#x5BF9;&#x4E00;&#x4E2A;&#x7F51;&#x6BB5;&#x8FDB;&#x884C;pth&#x7684;&#xFF0C;&#x5728;&#x6A2A;&#x5411;&#x79FB;&#x52A8;&#x4E2D;&#x649E;&#x5BC6;&#x7801;hash&#x4E2D;&#x7279;&#x522B;&#x6709;&#x6548;</p>
+<p><img src="img/ntlm_basic/image-20191118010402295.png" alt="image-20191118010402295"></p>
+</li>
+</ul>
+<p><img src="img/ntlm_basic/image-20191118010448326.png" alt="image-20191118010448326"></p>
+<h3 id="2-&#x5229;&#x7528;ntlm&#x8FDB;&#x884C;&#x7684;&#x4FE1;&#x606F;&#x6536;&#x96C6;">2. &#x5229;&#x7528;ntlm&#x8FDB;&#x884C;&#x7684;&#x4FE1;&#x606F;&#x6536;&#x96C6;</h3>
+<p>&#x56DE;&#x987E;type2 &#x3002;</p>
+<p><img src="img/ntlm_basic/image-20191118192540421.png" alt="image-20191118192540421"></p>
+<p>&#x5728;type2&#x8FD4;&#x56DE;Challenge&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x540C;&#x65F6;&#x8FD4;&#x56DE;&#x4E86;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7C7B;&#x578B;&#xFF0C;&#x4E3B;&#x673A;&#x540D;&#xFF0C;netbios&#x540D;&#x7B49;&#x7B49;&#x3002;&#x8FD9;&#x4E5F;&#x5C31;&#x610F;&#x5473;&#x7740;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;&#x80FD;&#x8DDF;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x884C;ntlm &#x4EA4;&#x6D41;&#x4E2D;&#xFF0C;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x4E00;&#x4E2A;type1&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;type2&#x7684;&#x54CD;&#x5E94;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x5F88;&#x591A;&#x4FE1;&#x606F;&#x3002;&#x524D;&#x9762;&#x6211;&#x4EEC;&#x8BF4;&#x8FC7;ntlm&#x662F;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x5F0F;&#x7684;&#x534F;&#x8BAE;&#xFF0C;&#x6D88;&#x606F;&#x7684;&#x4F20;&#x8F93;&#x4F9D;&#x8D56;&#x4E8E;&#x4F7F;&#x7528;ntlm&#x7684;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#xFF0C;&#x6BD4;&#x5982;SMB,LDAP,HTTP&#x7B49;&#x3002;&#x6211;&#x4EEC;&#x4EE5;SMB&#x4E3A;&#x4F8B;&#x3002;&#x5728;&#x76EE;&#x6807;&#x4E3B;&#x673A;&#x5F00;&#x653E;&#x4E86;445&#x6216;&#x8005;139&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x901A;&#x8FC7;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x4E00;&#x4E2A;type1&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x7136;&#x540E;&#x89E3;&#x6790;type2&#x7684;&#x54CD;&#x5E94;&#x3002;&#x5C31;&#x53EF;&#x4EE5;&#x6536;&#x96C6;&#x5230;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x76F4;&#x63A5;&#x4E0A;&#x4EE3;&#x7801;(&#x4EE3;&#x7801;&#x6765;&#x6E90;<a href="https://www.zcgonvh.com/post/CSharp_smb_version_Detection.html" target="_blank">c#&#x7248;&#x672C;&#x7684;smb_version</a>)&#xFF0C;&#x5927;&#x5BB6;&#x4E5F;&#x53EF;&#x4EE5;&#x4EFF;&#x9020;&#x4EE3;&#x7801;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x5176;&#x4ED6;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#x4E0B;&#x7684;&#x4FE1;&#x606F;&#x6536;&#x96C6;&#x3002;</p>
+<pre><code class="lang-c#">using System;
+using System.Data;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using System.Diagnostics;
+using System.IO;
+using System.Security.Cryptography;
+using System.Net;
+using System.Net.Sockets;
+using System.Reflection;
+using System.Runtime;
+using System.Runtime.InteropServices;
+
+namespace Zcg.Tests
+{
+    class smbver
+    {
+        static byte[] d1 ={
+    0x00, 0x00, 0x00, 0x85, 0xFF, 0x53, 0x4D, 0x42, 0x72, 0x00, 0x00, 0x00, 0x00, 0x18, 0x53, 0xC8, 
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFE, 
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x62, 0x00, 0x02, 0x50, 0x43, 0x20, 0x4E, 0x45, 0x54, 0x57, 0x4F, 
+    0x52, 0x4B, 0x20, 0x50, 0x52, 0x4F, 0x47, 0x52, 0x41, 0x4D, 0x20, 0x31, 0x2E, 0x30, 0x00, 0x02, 
+    0x4C, 0x41, 0x4E, 0x4D, 0x41, 0x4E, 0x31, 0x2E, 0x30, 0x00, 0x02, 0x57, 0x69, 0x6E, 0x64, 0x6F, 
+    0x77, 0x73, 0x20, 0x66, 0x6F, 0x72, 0x20, 0x57, 0x6F, 0x72, 0x6B, 0x67, 0x72, 0x6F, 0x75, 0x70, 
+    0x73, 0x20, 0x33, 0x2E, 0x31, 0x61, 0x00, 0x02, 0x4C, 0x4D, 0x31, 0x2E, 0x32, 0x58, 0x30, 0x30, 
+    0x32, 0x00, 0x02, 0x4C, 0x41, 0x4E, 0x4D, 0x41, 0x4E, 0x32, 0x2E, 0x31, 0x00, 0x02, 0x4E, 0x54, 
+    0x20, 0x4C, 0x4D, 0x20, 0x30, 0x2E, 0x31, 0x32, 0x00
+};
+        static byte[] d2 ={
+    0x00, 0x00, 0x01, 0x0A, 0xFF, 0x53, 0x4D, 0x42, 0x73, 0x00, 0x00, 0x00, 0x00, 0x18, 0x07, 0xC8, 
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFE, 
+    0x00, 0x00, 0x40, 0x00, 0x0C, 0xFF, 0x00, 0x0A, 0x01, 0x04, 0x41, 0x32, 0x00, 0x00, 0x00, 0x00, 
+    0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x00, 0x00, 0x00, 0xD4, 0x00, 0x00, 0xA0, 0xCF, 0x00, 0x60, 
+    0x48, 0x06, 0x06, 0x2B, 0x06, 0x01, 0x05, 0x05, 0x02, 0xA0, 0x3E, 0x30, 0x3C, 0xA0, 0x0E, 0x30, 
+    0x0C, 0x06, 0x0A, 0x2B, 0x06, 0x01, 0x04, 0x01, 0x82, 0x37, 0x02, 0x02, 0x0A, 0xA2, 0x2A, 0x04, 
+    0x28, 0x4E, 0x54, 0x4C, 0x4D, 0x53, 0x53, 0x50, 0x00, 0x01, 0x00, 0x00, 0x00, 0x07, 0x82, 0x08, 
+    0xA2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+    0x00, 0x05, 0x02, 0xCE, 0x0E, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x57, 0x00, 0x69, 0x00, 0x6E, 0x00, 
+    0x64, 0x00, 0x6F, 0x00, 0x77, 0x00, 0x73, 0x00, 0x20, 0x00, 0x53, 0x00, 0x65, 0x00, 0x72, 0x00, 
+    0x76, 0x00, 0x65, 0x00, 0x72, 0x00, 0x20, 0x00, 0x32, 0x00, 0x30, 0x00, 0x30, 0x00, 0x33, 0x00, 
+    0x20, 0x00, 0x33, 0x00, 0x37, 0x00, 0x39, 0x00, 0x30, 0x00, 0x20, 0x00, 0x53, 0x00, 0x65, 0x00, 
+    0x72, 0x00, 0x76, 0x00, 0x69, 0x00, 0x63, 0x00, 0x65, 0x00, 0x20, 0x00, 0x50, 0x00, 0x61, 0x00, 
+    0x63, 0x00, 0x6B, 0x00, 0x20, 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x57, 0x00, 0x69, 0x00, 
+    0x6E, 0x00, 0x64, 0x00, 0x6F, 0x00, 0x77, 0x00, 0x73, 0x00, 0x20, 0x00, 0x53, 0x00, 0x65, 0x00, 
+    0x72, 0x00, 0x76, 0x00, 0x65, 0x00, 0x72, 0x00, 0x20, 0x00, 0x32, 0x00, 0x30, 0x00, 0x30, 0x00, 
+    0x33, 0x00, 0x20, 0x00, 0x35, 0x00, 0x2E, 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+static byte[] d3={
+0x81,0x00,0x00,0x44,0x20,0x43,0x4b,0x46,0x44,0x45,0x4e,0x45,0x43,0x46,0x44,0x45
+,0x46,0x46,0x43,0x46,0x47,0x45,0x46,0x46,0x43,0x43,0x41,0x43,0x41,0x43,0x41,0x43
+,0x41,0x43,0x41,0x43,0x41,0x00,0x20,0x43,0x41,0x43,0x41,0x43,0x41,0x43,0x41,0x43
+,0x41,0x43,0x41,0x43,0x41,0x43,0x41,0x43,0x41,0x43,0x41,0x43,0x41,0x43,0x41,0x43
+,0x41,0x43,0x41,0x43,0x41,0x41,0x41,0x00
+};
+        static void Main(string[] args)
+        {
+            Console.WriteLine(&quot;SMB Version Detection tool 0.1&quot;);
+            Console.WriteLine(&quot;Part of GMH&apos;s fuck Tools, Code By zcgonvh.\r\n&quot;);
+            if (args.Length &lt; 1) { Console.WriteLine(&quot;usage: smbver host [port]&quot;); return; }
+            string host = args[0];
+            int port = 445;
+            try { port = int.Parse(args[1]); }
+            catch { }
+            try
+            {
+                byte[] buf = new byte[1024];
+                Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                sock.Connect(host, port);
+                if(port==139)
+                {
+                  sock.Send(d3);
+                  sock.Receive(buf);
+                }
+                sock.Send(d1);
+                sock.Receive(buf);
+                sock.Send(d2);
+                sock.Receive(buf);
+                int len = BitConverter.ToInt16(buf, 43);
+                string[] ss = Encoding.Unicode.GetString(buf, len + 47, buf.Length - len - 47).Split(&apos;\0&apos;);
+                Console.WriteLine(&quot;native os: &quot; + ss[0]);
+                Console.WriteLine(&quot;native lan manager: &quot; + ss[1]);
+                int off = 0;
+                for (int i = 47; i &lt; len - 7; i++)
+                {
+                    if (buf[i] == &apos;N&apos; &amp;&amp; buf[i + 1] == &apos;T&apos; &amp;&amp; buf[i + 2] == &apos;L&apos; &amp;&amp; buf[i + 3] == &apos;M&apos; &amp;&amp; buf[i + 4] == &apos;S&apos; &amp;&amp; buf[i + 5] == &apos;S&apos; &amp;&amp; buf[i + 6] == &apos;P&apos;) { off = i; break; }
+                }
+                byte[] ntlm = new byte[len];
+                Array.Copy(buf, off, ntlm, 0, len);
+                len = BitConverter.ToInt16(ntlm, 0xc);
+                off = BitConverter.ToInt16(ntlm, 0x10);
+                Console.WriteLine(&quot;negotiate target: &quot; + Encoding.Unicode.GetString(ntlm, off, len));
+                Console.WriteLine(&quot;os major version: &quot; + ntlm[off - 8]);
+                Console.WriteLine(&quot;os minor version: &quot; + ntlm[off - 7]);
+                Console.WriteLine(&quot;os build number: &quot; + BitConverter.ToInt16(ntlm, off - 6));
+                Console.WriteLine(&quot;ntlm current revision: &quot; + ntlm[off - 1]);
+                off += len;
+                int type = BitConverter.ToInt16(ntlm, off);
+                while (type != 0)
+                {
+                    off += 2;
+                    len = BitConverter.ToInt16(ntlm, off);
+                    off += 2;
+                    switch (type)
+                    {
+                        case 1:
+                            {
+                                Console.WriteLine(&quot;NetBIOS computer name: &quot; + Encoding.Unicode.GetString(ntlm, off, len));
+                                break;
+                            }
+                        case 2:
+                            {
+                                Console.WriteLine(&quot;NetBIOS domain name: &quot; + Encoding.Unicode.GetString(ntlm, off, len));
+                                break;
+                            }
+                        case 3:
+                            {
+                                Console.WriteLine(&quot;DNS computer name: &quot; + Encoding.Unicode.GetString(ntlm, off, len));
+                                break;
+                            }
+                        case 4:
+                            {
+                                Console.WriteLine(&quot;DNS domain name: &quot; + Encoding.Unicode.GetString(ntlm, off, len));
+                                break;
+                            }
+                        case 5:
+                            {
+                                Console.WriteLine(&quot;DNS tree name: &quot; + Encoding.Unicode.GetString(ntlm, off, len));
+                                break;
+                            }
+                        case 7:
+                            {
+                                Console.WriteLine(&quot;time stamp: {0:o}&quot;, DateTime.FromFileTime(BitConverter.ToInt64(ntlm, off)));
+                                break;
+                            }
+                        default:
+                            {
+                                Console.Write(&quot;Unknown type {0}, data: &quot;, type);
+                                for (int i = 0; i &lt; len; i++)
+                                {
+                                    Console.Write(ntlm[i + off].ToString(&quot;X2&quot;));
+                                }
+                                Console.WriteLine();
+                                break;
+                            }
+                    }
+                    off += len;
+                    type = BitConverter.ToInt16(ntlm, off);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(&quot;err: &quot; + ex);
+            }
+        }
+    }
+}
+</code></pre>
+<p>&#x6548;&#x679C;&#x5C55;&#x793A;&#x56FE;&#x662F;&#x8FD9;&#x6837;&#x7684;</p>
+<p><img src="img/ntlm_basic/image-20191118002514762.png" alt="image-20191118002514762"></p>
+<p>msf&#x5E95;&#x4E0B;&#x4E5F;&#x6709;&#x7C7B;&#x4F3C;&#x7684;&#x6A21;&#x5757;<code>auxiliary/scanner/smb/smb_version</code></p>
+<p><img src="img/ntlm_basic/image-20191118002727966.png" alt="image-20191118002727966"></p>
+<h3 id="3-ntlm-relay">3. ntlm relay</h3>
+<p>Hot Potato&#xFF0C;2018-8581,2019-1040&#x76F8;&#x4FE1;&#x5927;&#x5BB6;&#x4E5F;&#x90FD;&#x4E0D;&#x964C;&#x751F;&#x4E86;&#xFF0C;&#x8FD9;&#x5176;&#x4E2D;&#x90FD;&#x6709;ntlm_relay&#x7684;&#x5F71;&#x5B50;&#x3002;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5728;&#x4E0A;&#x4E16;&#x7EAA;&#x5C31;&#x88AB;&#x63D0;&#x51FA;&#x7684;&#x5B89;&#x5168;&#x95EE;&#x9898;&#xFF0C;&#x65F6;&#x81F3;2019&#x7684;&#x4ECA;&#x5929;&#xFF0C;ntlm_relay&#x4ECD;&#x7136;&#x5728;&#x8FDC;&#x7A0B;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x3002;&#x6A2A;&#x5411;&#x6269;&#x5C55;&#xFF0C;&#x6743;&#x9650;&#x63D0;&#x5347;&#x7B49;&#x65B9;&#x9762;&#x53D1;&#x6325;&#x7740;&#x5DE8;&#x5927;&#x7684;&#x4F5C;&#x7528;&#x3002;&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5269;&#x4F59;&#x90E8;&#x95E8;&#x7B80;&#x5355;&#x7684;&#x4ECB;&#x7ECD;&#x4E00;&#x4E9B;ntlm_relay&#x76F8;&#x5173;&#x7684;&#x6982;&#x5FF5;&#x3002;</p>
+<p>(1) ntlm_relay  &#x7684;&#x4E00;&#x822C;&#x8FC7;&#x7A0B;</p>
+<p>&#x5148;&#x56DE;&#x987E;&#x4E0B;&#x4E4B;&#x524D;ntlm &#x8BA4;&#x8BC1;&#x7684; type1,type2,type 3</p>
+<p><img src="img/ntlm_basic/image-20191118013543821.png" alt="image-20191118013543821"></p>
+<p>&#x90A3;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x6709;&#x4E2A;&#x4E2D;&#x95F4;&#x7684;&#x653B;&#x51FB;&#x8005;&#x51FA;&#x73B0;<img src="img/ntlm_basic/image-20191118013918215.png" alt="image-20191118013918215"></p>
+<p>&#x770B;&#x56FE;&#x5DF2;&#x7ECF;&#x80FD;&#x591F;&#x5F88;&#x6E05;&#x6670;&#x5F97;&#x7406;&#x89E3;ntlm_relay&#x7684;&#x4E00;&#x822C;&#x8FC7;&#x7A0B;&#xFF0C;&#x4F5C;&#x4E3A;&#x4E2D;&#x95F4;&#x4EBA;&#xFF0C;&#x653B;&#x51FB;&#x8005;&#x5C06;&#x6765;&#x81EA;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x5305;(type 1)&#x8F6C;&#x53D1;&#x7ED9;&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x5C06;&#x6765;&#x81EA;&#x670D;&#x52A1;&#x7AEF;&#x7684;challenge(type 2)&#x8F6C;&#x53D1;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x7136;&#x540E;&#x5BA2;&#x6237;&#x7AEF;&#x8BA1;&#x7B97;&#x5B8C;response &#x4E4B;&#x540E;&#xFF0C;&#x518D;&#x628A;response(type 3) &#x8F6C;&#x53D1;&#x7ED9;&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x670D;&#x52A1;&#x7AEF;&#x9A8C;&#x8BC1;rsponse&#x901A;&#x8FC7;&#x4E4B;&#x540E;&#xFF0C;&#x6388;&#x4E88;&#x653B;&#x51FB;&#x8005;&#x8BBF;&#x95EE;&#x7684;&#x6743;&#x9650;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x6293;&#x5305;&#x67E5;&#x770B;&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x8DDF;&#x4E0A;&#x56FE;&#x5DEE;&#x4E0D;&#x591A;(&#x5176;&#x4E2D;Attacker&#x662F;172.16.100.1,Inventory Server&#x662F;172.16.100.5&#xFF0C;Target&#x662F;172.16.100.128)</p>
+<p><img src="img/ntlm_basic/image-20191118015109435.png" alt="image-20191118015109435"></p>
+<p>(2) ntlm_relay  or smb_relay</p>
+<p>&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x53CD;&#x590D;&#x5728;&#x8BF4;&#x4E00;&#x4EF6;&#x4E8B;,ntlm&#x662F;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x5F0F;&#x7684;&#x534F;&#x8BAE;&#xFF0C;&#x6D88;&#x606F;&#x7684;&#x4F20;&#x8F93;&#x4F9D;&#x8D56;&#x4E8E;&#x4F7F;&#x7528;ntlm&#x7684;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#xFF0C;&#x6BD4;&#x5982;SMB,LDAP,HTTP&#x7B49;&#x3002;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x67E5;&#x770B;&#x5305;&#x5C31;&#x53EF;&#x4EE5;&#x5F88;&#x6E05;&#x695A;&#x7684;&#x770B;&#x5230;&#x8FD9;&#x4E00;&#x70B9;&#x3002;</p>
+<p><img src="img/ntlm_basic/image-20191118014755709.png" alt="image-20191118014755709"></p>
+<p>&#x90A3;ntlm&#x7684;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#x662F;smb&#x7684;&#x60C5;&#x51B5;&#x4E0B;,ntlm_relay&#x5C31;&#x662F;smb_relay&#x3002;&#x90A3;&#x5982;&#x679C;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#x662F;http&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x53EB;&#x505A;http_relay&#xFF0C;&#x4F46;&#x662F;&#x90FD;&#x7EDF;&#x79F0;ntlm_relay&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x540E;&#x9762;&#x7EDF;&#x4E00;&#x7528;ntlm_relay&#xFF0C;&#x5C31;&#x4E0D;&#x518D;&#x7EA0;&#x7ED3;&#x8FD9;&#x4E2A;&#x5B57;&#x6837;&#x4E86;&#x3002;</p>
+<p>(3) &#x8DE8;&#x534F;&#x8BAE;&#x7684;relay</p>
+<p>&#x53C8;&#x662F;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x53CD;&#x590D;&#x5F3A;&#x8C03;&#x7684;&#x4E00;&#x4E2A;&#x70B9;,ntlm&#x662F;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x5F0F;&#x7684;&#x534F;&#x8BAE;&#xFF0C;&#x6D88;&#x606F;&#x7684;&#x4F20;&#x8F93;&#x4F9D;&#x8D56;&#x4E8E;&#x4F7F;&#x7528;ntlm&#x7684;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#xFF0C;&#x6BD4;&#x5982;SMB,LDAP,HTTP&#x7B49;,&#x90A3;&#x4E0D;&#x7BA1;&#x4E0A;&#x5C42;&#x534F;&#x8BAE;&#x662F;&#x5565;&#xFF0C;ntlm&#x7684;&#x8BA4;&#x8BC1;&#x603B;&#x5F52;&#x662F;type 1,type 2,type3 &#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x5C40;&#x9650;&#x4E8E;&#x4E4B;&#x524D;&#x63D0;&#x5230;&#x7684;smb&#x5230;smb&#x8FD9;&#x79CD;relay&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x534F;&#x8BAE;&#x91CC;&#x9762;&#x63D0;&#x53D6;ntlm&#x8BA4;&#x8BC1;&#x4FE1;&#x606F;&#xFF0C;&#x653E;&#x8FDB;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x534F;&#x8BAE;&#x91CC;&#x9762;&#xFF0C;&#x5B9E;&#x73B0;&#x8DE8;&#x534F;&#x8BAE;&#x7684;relay&#x3002;</p>
+<p>(4) relay or reflet</p>
+<p>&#x518D;&#x770B;&#x770B;relay&#x7684;&#x8FD9;&#x79CD;&#x56FE;</p>
+<p><img src="img/ntlm_basic/image-20191118020242445.png" alt="image-20191118020242445"></p>
+<p>&#x5982;&#x4E0A;&#x56FE;&#xFF0C;&#x5982;&#x679C;Inventory Server&#x548C;Target&#x662F;&#x540C;&#x4E00;&#x53F0;&#x673A;&#x5B50;&#xFF0C;&#x90A3;&#x4E48;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6211;&#x4EEC;&#x653B;&#x51FB;&#x8005;&#x62FF;&#x5230;Inventory Server&#x53D1;&#x6765;&#x7684;&#x8BF7;&#x6C42;&#x4E4B;&#x540E;&#xFF0C;&#x53D1;&#x56DE;&#x7ED9;Inventory Server&#x8FDB;&#x884C;&#x8BA4;&#x8BC1;&#x3002;&#x8FD9;&#x4E2A;&#x5C31;&#x662F;reflect&#x3002;&#x5728;&#x5DE5;&#x4F5C;&#x7EC4;&#x73AF;&#x5883;&#x91CC;&#x9762;&#xFF0C;&#x5DE5;&#x4F5C;&#x7EC4;&#x4E2D;&#x7684;&#x673A;&#x5668;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x6CA1;&#x6709;&#x4FE1;&#x4EFB;&#x5173;&#x7CFB;&#xFF0C;&#x6BCF;&#x53F0;&#x673A;&#x5668;&#x7684;&#x8D26;&#x53F7;&#x5BC6;&#x7801;&#x53EA;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x81EA;&#x5DF1;&#x7684;SAM&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;relay&#x5230;&#x522B;&#x7684;&#x673A;&#x5668;&#xFF0C;&#x9664;&#x975E;&#x4E24;&#x53F0;&#x673A;&#x5668;&#x7684;&#x8D26;&#x53F7;&#x5BC6;&#x7801;&#x4E00;&#x6837;&#xFF0C;&#x4E0D;&#x7136;&#x6CA1;&#x6709;&#x522B;&#x7684;&#x610F;&#x4E49;&#x4E86;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x7684;&#x653B;&#x51FB;&#x624B;&#x6BB5;&#x5C31;&#x662F;&#x5C06;&#x673A;&#x5668;reflect&#x56DE;&#x673A;&#x5B50;&#x672C;&#x8EAB;&#x3002;&#x56E0;&#x6B64;&#x5FAE;&#x8F6F;&#x5728;ms08-068&#x4E2D;&#x5BF9;smb reflect&#x5230;smb &#x505A;&#x4E86;&#x9650;&#x5236;&#x3002;CVE-2019-1384(Ghost Potato)&#x5C31;&#x662F;&#x7ED5;&#x8FC7;&#x4E86;&#x8BE5;&#x8865;&#x4E01;&#x3002;</p>
+<p>(5) &#x6316;&#x6398;ntlm_relay&#x7684;&#x4E00;&#x822C;&#x65B9;&#x6CD5;</p>
+<ol>
+<li>&#x5982;&#x4F55;&#x89E6;&#x53D1;Inventory Server &#x5411;Attacker&#x53D1;&#x8D77;&#x8BF7;&#x6C42;&#xFF0C;&#x5C06;&#x5728;&#x4E0B;&#x7BC7;&#x6587;&#x7AE0;&#x91CC;&#x9762;&#x8BE6;&#x7EC6;&#x9610;&#x8FF0;</li>
+<li>Attacker&#x62FF;&#x5230;&#x8BF7;&#x6C42;&#x4E4B;&#x540E;&#xFF0C;&#x662F;&#x8FDB;&#x884C;ntlm ntlm&#x7834;&#x89E3;&#x8FD8;&#x662F;&#x9009;&#x62E9;&#x8FDB;&#x884C;relay&#xFF0C;relay&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x8DE8;&#x534F;&#x8BAE;relay&#xFF0C;&#x90A3;relay&#x5230;&#x4E0D;&#x540C;&#x7684;&#x534F;&#x8BAE;&#x80FD;&#x8D77;&#x5230;&#x4EC0;&#x4E48;&#x4F5C;&#x7528;&#xFF0C;&#x5C06;&#x5728;&#x4E0B;&#x4E0B;&#x7BC7;&#x6587;&#x7AE0;&#x91CC;&#x9762;&#x8BE6;&#x7EC6;&#x9610;&#x8FF0;&#x3002;</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../NTLM/" class="navigation navigation-prev " aria-label="Previous page: NTLM 篇">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="5.html" class="navigation navigation-next " aria-label="Next page: 发起NTLM  请求">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"NTLM 基础 介绍","level":"1.3.1","depth":2,"next":{"title":"发起NTLM  请求","level":"1.3.2","depth":2,"path":"ntlm/5.md","ref":"ntlm/5.md","articles":[]},"previous":{"title":"NTLM 篇","level":"1.3","depth":1,"path":"NTLM/README.md","ref":"NTLM/README.md","articles":[{"title":"NTLM 基础 介绍","level":"1.3.1","depth":2,"path":"ntlm/4.md","ref":"ntlm/4.md","articles":[]},{"title":"发起NTLM  请求","level":"1.3.2","depth":2,"path":"ntlm/5.md","ref":"ntlm/5.md","articles":[]},{"title":"Net- NTLM 利用","level":"1.3.3","depth":2,"path":"ntlm/6.md","ref":"ntlm/6.md","articles":[]},{"title":"漏洞概述","level":"1.3.4","depth":2,"path":"ntlm/7.md","ref":"ntlm/7.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ntlm/4.md","mtime":"2019-12-10T13:37:28.110Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-10T14:24:39.969Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
