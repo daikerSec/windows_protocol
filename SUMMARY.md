@@ -1,6 +1,6 @@
 # windows 内网协议学习
 
-* [Introduction](README.md)
+* [前言](README.md)
 * [Kerberos 篇](kerberos/README.md)
   * [AS_REQ & AS_REP](kerberos/1.md)
   * [TGS_REQ & TGS_REP](kerberos/2.md)
