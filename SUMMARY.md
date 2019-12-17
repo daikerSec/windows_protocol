@@ -10,4 +10,6 @@
   * [发起NTLM  请求](ntlm/5.md)
   * [Net- NTLM 利用](ntlm/6.md)
   * [漏洞概述](ntlm/7.md)
+* [LDAP 篇](ldap/README.md)
+  * [Active Directory简介](ldap/8.md)
 
