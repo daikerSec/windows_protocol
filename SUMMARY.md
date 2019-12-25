@@ -12,4 +12,5 @@
   * [漏洞概述](ntlm/7.md)
 * [LDAP 篇](ldap/README.md)
   * [Active Directory简介](ldap/8.md)
+  * [组和OU介绍](ldap/9.md)
 
