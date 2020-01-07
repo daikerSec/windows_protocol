@@ -13,4 +13,5 @@
 * [LDAP 篇](ldap-pian/README.md)
   * [Active Directory简介](ldap-pian/8.md)
   * [组和OU介绍](ldap-pian/9.md)
+  * [域用户和计算机用户介绍](ldap-pian/10.md)
 
