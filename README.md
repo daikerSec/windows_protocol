@@ -17,5 +17,7 @@
       * [Active Directory简介](https://daiker.gitbook.io/windows-protocol/ldap-pian/8)
       * [组和OU介绍](https://daiker.gitbook.io/windows-protocol/ldap-pian/9)
       * [域用户和计算机用户介绍](https://daiker.gitbook.io/windows-protocol/ldap-pian/10)
+      * [域权限上](https://daiker.gitbook.io/windows-protocol/ldap-pian/11)
+      * [域权限下](https://daiker.gitbook.io/windows-protocol/ldap-pian/12)
 
 
