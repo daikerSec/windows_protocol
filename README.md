@@ -20,5 +20,6 @@
       * [域用户和计算机用户介绍](https://daiker.gitbook.io/windows-protocol/ldap-pian/10)
       * [域权限上](https://daiker.gitbook.io/windows-protocol/ldap-pian/11)
       * [域权限下](https://daiker.gitbook.io/windows-protocol/ldap-pian/12)
-
+- 工具
+    - * [kerberos 测试工具2.0](https://github.com/daikerSec/windows_protocol/raw/master/tools/kerberosGui.exe)
 
