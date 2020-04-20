@@ -16,4 +16,5 @@
   * [域用户和计算机用户介绍](ldap-pian/10.md)
   * [域权限上](ldap-pian/11.md)
   * [域权限下](ldap-pian/12.md)
+  * [组策略](ldap-pian/13.md)
 
