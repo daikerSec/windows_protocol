@@ -2,7 +2,8 @@
 
 熟悉内网渗透的应该都对IPC，黄金票据，白银票据，NTLM Relay，Pth,Ptt,Ptk，PTC 这些词汇再熟悉不够了，对其利用工具也了如指掌，但是有些人对里面使用的原理还不太了解，知其然不知其所以然，本系列文章就针对内网渗透的常见协议(如kerberos,ntlm,smb,ldap,netbios等)进行分析，介绍相关漏洞分析以及漏洞工具分析利用。
 
-在这个系列文章里面
+在这个系列文章里面主要有
+
 1. kerberos 篇分为AS_REQ/AS_REP，TGS_REQ/TGS_TGS_REP,PAC三部分，介绍kerberos的点点滴滴，以及在协议设计与实现上可能出现的各种安全隐患，如用户名枚举，密码喷撒，黄金票据，白银票据，Kerberoasing等。
 2. 在NTLM 篇，介绍NTLM,Net-ntlm 相关的一些知识点，介绍了PTH，PTH的缓解补丁kb2871997，以及整个NTLM协议里面最严重的一个问题--NTLM_Relay,怎么发起NTLM请求，拿到NTLM请求之后怎么做。从破解Net-ntlmv1，到Relay 会SMB，再到现在的配合资源约束委派的整个NTLM_relay 攻击的进化史。
 3. 在LDAP篇，介绍了AD的一些内容，组，OU，计算机，用户，ACL，组策略，域信任等等。
